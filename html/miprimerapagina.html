@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/miestilo.css">
+        <title>WEB App ejemplo</title>
+        <link rel="./css/miestilo.css">
+        <link rel="./css/esqueleto.css">
+        <script src="./js/login.js"></script>
+    </head>
+<body>
+    <header>
+        <h1>Bienvenidos a la clase de HTML en la EOI</h1>
+    </header>
+    <nav class="navbar">
+        <!-- LOGO -->
+        <div class="logo"><img src="./img/eoilogo.png"></div>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links">
+          <!-- NAVIGATION MENUS -->
+          <div class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About</a></li>
+            <li class="services">
+              <a href="/">Services</a>
+              <!-- DROPDOWN MENU -->
+              <ul class="dropdown">
+                <li><a href="/">Dropdown 1 </a></li>
+                <li><a href="/">Dropdown 2</a></li>
+                <li><a href="/">Dropdown 2</a></li>
+                <li><a href="/">Dropdown 3</a></li>
+                <li><a href="/">Dropdown 4</a></li>
+              </ul>
+            </li>
+            <li><a href="/">Contact</a></li>
+          </div>
+        </ul>
+      </nav>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <article>
+        <section>
+            <form action="javascript:validate()" method="post">
+                
+              
+                <div class="container">
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" id = "username" required>
+        
+                  <label for="email"><b>Email</b></label>
+                  <input type="email" placeholder="Enter email" name="email" id = "email" required>
+              
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" id = "password" required>
+              
+                  <button type="submit">Login</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                  </label>
+                </div>
+              
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" class="cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+              </form>
+        </section>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                    <div class="four columns">
+                            <nav id="principal" class="menu">
+                                <a class="enlace" href="#">Conviertete en Instructor</a>
+                                <a class="enlace" href="#">Aplicaciones Móviles</a>
+                                <a class="enlace" href="#">Soporte</a>
+                                <a class="enlace" href="#">Temas</a>
+                            </nav>
+                    </div>
+                    <div class="four columns">
+                            <nav id="secundaria" class="menu">
+                                <a class="enlace" href="#">¿Quienes Somos?</a>
+                                <a class="enlace" href="#">Empleo</a>
+                                <a class="enlace" href="#">Blog</a>
+                            </nav>
+                    </div>
+            </div>
+        </div>
+    </footer>
+    
+</html>
+
