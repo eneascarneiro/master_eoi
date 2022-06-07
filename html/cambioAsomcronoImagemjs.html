@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/miestilo.css">
+    <title>WEB App ejemplo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="./js/login.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bienvenidos a la clase de HTML en la EOI</h1>
+    </header>
+    
+    <nav class="navbar">
+
+        <div class="container-fluid">
+
+            <div class="logo">
+
+                <img src="./img/eoilogo.png">
+
+            </div>
+
+
+
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                <a href="./HomeIn.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Home</a>
+
+                <a href="./nosotros.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sobre nosotros...</a>
+
+
+
+                <div class="btn-group" role="group">
+
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle"
+
+                        data-bs-toggle="dropdown" aria-expanded="false">Services</button>
+
+                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                        <li><a class="dropdown-item" href="./ejemplo2columnas.html">ejemplo2columnas</a></li>
+
+                        <li><a class="dropdown-item" href="./Ejemplo3columnas.html">Ejemplo3columnas</a></li>
+
+                        <li><a class="dropdown-item" href="./Carucelimajenes.html">Carousel imagenes</a></li>
+
+                        <li><a class="dropdown-item" href="./Carucelvideo.html">Carousel video</a></li>
+
+                    </ul>
+
+                </div>
+
+                <a href="./Contacto.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Contacto</a>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <!--script src="https://smtpjs.com/v3/smtp.js"></script-->
+    <article>
+        <section>
+        <img id = "imagen1" src="https://elindependiente.com/wp-content/uploads/2021/08/jirafas-zoe-muller-980x550.jpg"
+
+        alt="Trulli" width="70%" height="30%">
+            alt="Trulli" width="70%" height="30%"> 
+        <script>
+            async function myDisplay() {
+            let myPromise = new Promise(function(resolve) {
+                setTimeout(function() {resolve("https://anipedia.net/imagenes/animal-salvaje-el-leon.jpg");}, 3000);
+            });
+            document.getElementById("imagen1").src= await myPromise;
+            }
+            
+            myDisplay();
+        </script>
+        </section>
+    </article>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <nav id="principal" class="menu">
+                        <a class="enlace" href="#">Conviertete en Instructor</a>
+                        <a class="enlace" href="#">Aplicaciones Móviles</a>
+                        <a class="enlace" href="#">Soporte</a>
+                        <a class="enlace" href="#">Temas</a>
+                    </nav>
+                </div>
+                <div class="four columns">
+                    <nav id="secundaria" class="menu">
+                        <a class="enlace" href="#">¿Quienes Somos?</a>
+                        <a class="enlace" href="#">Empleo</a>
+                        <a class="enlace" href="#">Blog</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</html>
