@@ -1,0 +1,93 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>Task List</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Tasks Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Tasks</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/tasks/create}">New Task</a>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Starting Date</th>
+                                    <th>Ending Date</th>
+                                    <th>User ID</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="task,iter : ${tasks}">
+                                    <td th:text="${task.id}"></td>
+                                    <td th:text="${task.name}"></td>
+                                    <td th:text="${task.startingDate}"></td>
+                                    <td th:text="${task.endingDate}"></td>
+                                    <td th:text="${task.userId}"></td>
+                                    <td>
+                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id}}"
+                                           title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/edit'}"
+                                           title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button class="btn btn-danger" type="submit" value="Delete"
+                                                th:formaction="'/tasks/' + ${task.id} + '/delete'">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <!--                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/delete'}"-->
+                                        <!--                                           title="Delete"><span class="glyphicon glyphicon-trash"></span></a>-->
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(tasks.content)}">
+                                    <td colspan="13" class="text-center">No Tasks</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div th:if="${not #lists.isEmpty(tasks.content)}">
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <div th:if="${tasks.totalPages > 0}" class="pagination"
+                                     th:each="pageNumber : ${pageNumbers}">
+                                    <li th:class="${pageNumber==tasks.number + 1} ? active">
+                                        <a href="#" th:href="@{/tasks(size=${tasks.size}, page=${pageNumber})}"
+                                           th:text=${pageNumber}></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

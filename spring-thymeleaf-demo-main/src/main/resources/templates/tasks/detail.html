@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Welcome to Our Site</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb" th:object="${task}">
+    <h1>Tasks Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/tasks"><i class="fa fa-tasks"></i> Tasks</a></li>
+        <li class="active" th:utext="@{'Task ID: <b>' + ${task.id}} + '</b>'"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+    <form role="form" th:object="${task}" method="post" action="#" th:action="@{'/tasks/' + ${task.id} + '/delete'}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="1a">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="name" th:text="#{Task.Name}"></label>
+                                        <p id="name" th:text="${task.name}"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="startingDate" th:text="#{Task.StartingDate}"></label>
+                                        <p id="startingDate" th:text="${task.startingDate}"/>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="endingDate" th:text="#{Task.EndingDate}"></label>
+                                        <p id="endingDate" th:text="${task.endingDate}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer with-border">
+                    <a th:href="@{/tasks}" class="btn btn-default" role="button"
+                       title="Back list" th:text="#{General.Back}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <a th:href="@{'/tasks/' + ${task.id} + '/edit'}" class="btn btn-primary" role="button"
+                       title="Back list" th:text="#{General.Edit}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <button type="submit" class="box-title btn btn-danger"
+                            title="Save Data" th:text="#{General.Delete}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

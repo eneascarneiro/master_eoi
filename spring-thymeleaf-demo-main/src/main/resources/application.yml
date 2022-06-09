@@ -1,0 +1,29 @@
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    url: jdbc:h2:file:./target/h2db/db/demo;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
+    username: demo
+    password:
+  h2:
+    console:
+      enabled: true
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  resources:
+    static-locations: file:src/main/resources/static/
+    cache:
+      period: 0
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+server:
+  port: 8080
