@@ -2,12 +2,15 @@ package com.example.proyecto_spring_html_th;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PersonController {
@@ -42,5 +45,31 @@ public class PersonController {
         //Ahora preparo el envío de datos
         model.addAttribute("datoshome",miHome);
         return "index";
+    }
+
+    @GetMapping("/Calendario")
+    String getCalendario(Model model) throws ParseException{
+        Calendario miCalendario = new Calendario();
+        model.addAttribute("attr_calendario", miCalendario);
+        return "calendario";
+    }
+    @PostMapping("/altaCalendario")
+    public String altacalendario(@ModelAttribute("attr_calendario") Calendario calendario){
+        // si tuviera rTodo tendría un servicio conectado a una bbdd
+        // objetoServicio.save(objetodelectura);
+        // En este caso vamos a poner por consola los datos leidos.
+        System.out.println(calendario.getTextoAccion());
+        return "Calendario";
+
+    }
+    @RequestMapping("/createCalendar")
+    public String createCalendar(EoiCalendar eoiCalendar){
+        // Servicio conectado a la BBDD donde puedo controlar la entrada de datos
+        // objetoDeLecturaServicio
+        // En este ejemplo mostramos por consola en url indicada
+        System.out.println("calendario accion = " + eoiCalendar.getActionText());
+        System.out.println("calendario hora = " + eoiCalendar.getActionHora());
+        System.out.println("calendario dia = " + eoiCalendar.getActionDia());
+        return "Calendar";
     }
 }
