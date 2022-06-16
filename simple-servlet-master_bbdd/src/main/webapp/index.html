@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SimpleServlet</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+  </head>
+  <body>
+  <h1>A Simple Servlet</h1> 
+  <p>This is a static webpage.</p>
+  <p>Now try the  <a href="count?acc=7&suma=55">servlet.Counter servlet</a></p>
+  <p>Now try bad  <a href="count?accc=7&suma=55">servlet.Counter servlet</a></p>
+  <p>Here is a <a href="jspcount"> simple JSP (Java Servlet Page)</a></p>
+
+  <div class="container">
+    <label ><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" id = "uname" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id = "psw" required>
+
+    <a href="login?user=${document.getElementById('uname').value}&password=${document.getElementById('psw').value}"> Submit</a>
+  </div>
+  </body>
+</html>
