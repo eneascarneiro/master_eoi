@@ -26,11 +26,12 @@
      <scope>provided</scope>
    </dependency>
 
-   <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>${jettyVersion}</version>
-    </dependency>
+     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+     <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>8.0.19</version>
+     </dependency>
 
  </dependencies>
 
