@@ -26,12 +26,20 @@
 
    <servlet>
       <servlet-name>jspcount.jsp</servlet-name>
-      <jsp-file>/jspcount.jsp</jsp-file>
+      <jsp-file>/jsp/jspcount.jsp</jsp-file>
    </servlet>
    <servlet-mapping>
       <servlet-name>jspcount.jsp</servlet-name>
       <url-pattern>/jspcount/*</url-pattern>
-   </servlet-mapping>   
+   </servlet-mapping>
 
+   <servlet>
+      <servlet-name>mostrarlibros.jsp</servlet-name>
+      <jsp-file>/jsp/mostrarlibros.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>mostrarlibros.jsp</servlet-name>
+      <url-pattern>/mostrarlibros/*</url-pattern>
+   </servlet-mapping>
 
 </web-app>

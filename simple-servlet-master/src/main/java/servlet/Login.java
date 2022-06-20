@@ -1,7 +1,9 @@
 package servlet;
 
+import DTO.LibrosLeidos;
 import dao.UsuariosDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Login extends HttpServlet {
     int accesses = 0;
@@ -28,7 +31,7 @@ public class Login extends HttpServlet {
             //Si son correctos pagina de entrada
             try {
                 if (usuariosDao.ValidarUsuario()){
-                    response.setContentType("text/html");
+                    /*response.setContentType("text/html");
                     PrintWriter out = response.getWriter();
                     //Compongo el html
                     out.print("   <!DOCTYPE html>   " +
@@ -37,7 +40,19 @@ public class Login extends HttpServlet {
                             "<p>hola te ha logeado con exito"+
                             " </p> " +
                             " </body> " +
-                            " </html>");
+                            " </html>");*/
+                   //Quiero leer de usuariosdo mediante el método MostrarLibrosLeidos la lista de libros
+                    List<LibrosLeidos> lista = null;
+                    try{
+                        lista = usuariosDao.MostrarLibrosLeidos();
+                    } catch (SQLException e ){
+                        e.printStackTrace();
+                    }
+                    //Preparar la salida para invocar al jsp
+                    request.setAttribute("listaLibros",lista);
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/mostrarlibros.jsp");
+                    requestDispatcher.forward(request,response);
+
                 }
                 else {
                     //Si no redirigimos al index
