@@ -1,6 +1,4 @@
-<%!
- public static int accesses = 0;
-%>
+
 
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -30,11 +28,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
-                  <div class="well sidebar-nav">
-                    <c:import url="/WEB-INF/views/tags/menu.jsp"/>
-                  </div>
-                </div>
+
 
                <h1>JSP Example (jspcount.jsp)</h1>
                <%
@@ -42,12 +36,11 @@
                  out.print("<p>Number of times this JSP has been accessed:" + accesses + "</p>");
                %>
 
-            </div><!--/col-->
           </div><!--/row-->
 
           <hr class="soften">
     </div>
-
+    </div>
     <c:import url="/WEB-INF/views/tags/footer.jsp"/>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
