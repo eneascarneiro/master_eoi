@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
       version="3.1">
-
    <servlet>
       <servlet-name>servlet.Counter</servlet-name>
       <servlet-class>servlet.Counter</servlet-class>
@@ -33,6 +32,17 @@
       <servlet-name>servlet.LibrosLeidos</servlet-name>
       <url-pattern>/librosleidos/*</url-pattern>
    </servlet-mapping>
+
+   <servlet>
+      <servlet-name>servlet.Libros</servlet-name>
+      <servlet-class>servlet.Libros</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>servlet.Libros</servlet-name>
+      <url-pattern>/libros/*</url-pattern>
+   </servlet-mapping>
+
 
    <servlet>
       <servlet-name>jspcount.jsp</servlet-name>
@@ -75,5 +85,4 @@
       <servlet-name>logout.jsp</servlet-name>
       <url-pattern>/logoutfrm/*</url-pattern>
    </servlet-mapping>
-
 </web-app>

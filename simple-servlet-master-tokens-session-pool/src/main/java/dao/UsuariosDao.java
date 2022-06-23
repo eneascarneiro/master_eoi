@@ -10,11 +10,9 @@ import utils.ConexionBaseDatos;
 
 import javax.naming.NamingException;
 
-import javax.sql.DataSource;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.concurrent.ExecutionException;
 
 
@@ -63,6 +61,7 @@ public class UsuariosDao {
                 session.setAttribute("usuario",usuarios.getUsuario());
                 session.setAttribute("token",utils.token.generateRandomToken(25,usuarios.getUsuario()));
                 //Cambia el token si lo vuelvo a crear?
+                System.out.print("\n");
                 System.out.print("Token nuevo\n");
                 System.out.print(utils.token.generateRandomToken(25,usuarios.getUsuario())+"\n");
                 System.out.print("Token sesion\n");

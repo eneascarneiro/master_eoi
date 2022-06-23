@@ -4,6 +4,7 @@ public class Books {
     int book_id;
     String book_title;
 
+    double precio;
     public Books() {
     }
 
@@ -21,5 +22,13 @@ public class Books {
 
     public void setBook_title(String book_title) {
         this.book_title = book_title;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }
