@@ -34,6 +34,17 @@
    </servlet-mapping>
 
    <servlet>
+      <servlet-name>servlet.Libros</servlet-name>
+      <servlet-class>servlet.Libros</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>servlet.Libros</servlet-name>
+      <url-pattern>/libros/*</url-pattern>
+   </servlet-mapping>
+
+
+   <servlet>
       <servlet-name>jspcount.jsp</servlet-name>
       <jsp-file>/jsp/jspcount.jsp</jsp-file>
    </servlet>

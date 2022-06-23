@@ -17,6 +17,9 @@
         rel="stylesheet"  type="text/css" />
     <link href="<c:url value="/resources/css/main.css" />"
         rel="stylesheet"  type="text/css" />
+         <link href="<c:url value="/css/custom.css" />"         rel="stylesheet"  type="text/css" />
+          <link href="<c:url value="/css/normalize.css" />"         rel="stylesheet"  type="text/css" />
+           <link href="<c:url value="/css/skeleton.css" />"         rel="stylesheet"  type="text/css" />
 
 </head>
 

@@ -10,9 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-    <link href="<c:url value="/resources/css/main.css" />"
-        rel="stylesheet"  type="text/css" />
+    <link href="<c:url value="/resources/css/main.css" />"         rel="stylesheet"  type="text/css" />
  <link href="<c:url value="/css/custom.css" />"         rel="stylesheet"  type="text/css" />
   <link href="<c:url value="/css/normalize.css" />"         rel="stylesheet"  type="text/css" />
    <link href="<c:url value="/css/skeleton.css" />"         rel="stylesheet"  type="text/css" />
@@ -33,27 +31,43 @@
                 </div>
                 <div class="col-md-10">
                     <div class = "container  w-50">
-                        <h1 class = "text-center"> Detalle libro </h1>
+                        <h1 class = "text-center"> Libros leidos </h1>
                     </div>
 
+                    <h2 class = "text-center"> Enhorabuena <Nombre> has leido <num> libros </h2>
                     <div class = "row">
                         <div class ="col-sm-3">
-                            <label>Id libro </label>
+                            <label>id libro: </label>
                         </div>
-                        <div class ="col-sm-6">
-                            <label>Nombre libro </label>
+                        <div class ="col-sm-3">
+                            <label>Nombre libro: </label>
+                        </div>
+                        <div class ="col-sm-3">
+                            <label>Precio: </label>
+                        </div>
+                        <div class ="col-sm-3">
+                            <label>Cómprame: </label>
                         </div>
                     </div>
+                    <c:forEach items="${listaLibros}" var="lItem">
                     <div class = "row">
                         <div class ="col-sm-3">
-                            <c:out value="${book.book_id}"/>
+                            <c:out value="${lItem.book_id}"/>
                         </div>
-                        <div class ="col-sm-6">
-                            <c:out value="${book.book_title}"/>
+                        <div class ="col-sm-3">
+                            <c:out value="${lItem.book_title}"/>
+                        </div>
+                        <div class ="col-sm-3">
+                            <c:out value="${lItem.precio}"/>
+                        </div>
+                        <div class ="col-sm-2">
+                            <a href="/libros?opt=comprar&id_libro=${lItem.book_id}" class ="btn btn-danger mb-3">Comprar</a>
                         </div>
                     </div>
-                </div><!--/col-->
-            </div><!--/row-->
+                    </c:forEach>
+
+            </div><!--/col-->
+          </div><!--/row-->
 
           <hr class="soften">
     </div>
