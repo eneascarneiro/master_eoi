@@ -8,6 +8,8 @@ public class LibrosLeidos {
     Date fecha_lectura;
     String book_title;
 
+    int book_id;
+
     public LibrosLeidos() {
     }
 
@@ -41,5 +43,13 @@ public class LibrosLeidos {
 
     public void setBook_title(String book_title) {
         this.book_title = book_title;
+    }
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 }

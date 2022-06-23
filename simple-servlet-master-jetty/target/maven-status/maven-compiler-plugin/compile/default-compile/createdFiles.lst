@@ -2,7 +2,9 @@ model\Books.class
 servlet\Counter.class
 utils\ConexionBaseDatos.class
 utils\token.class
+DTO\BookDetalle.class
 DTO\LibrosLeidos.class
 servlet\Login.class
 model\Usuarios.class
+dao\BooksDao.class
 dao\UsuariosDao.class

@@ -1,5 +1,6 @@
 package dao;
 
+import DTO.BookDetalle;
 import DTO.LibrosLeidos;
 import model.Usuarios;
 import utils.ConexionBaseDatos;
@@ -7,6 +8,8 @@ import utils.ConexionBaseDatos;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import java.sql.*;
@@ -41,7 +44,7 @@ public class UsuariosDao {
             conn = getConnection();
         }
     }
-    public boolean ValidarUsuario () throws SQLException, NamingException, ExecutionException, InterruptedException {
+    public boolean ValidarUsuario (HttpServletRequest request) throws SQLException, NamingException, ExecutionException, InterruptedException {
         if (usuarios.usr_informado > 0){
             getConn();
             //Continuamos
@@ -55,6 +58,16 @@ public class UsuariosDao {
             if (rs.next()){
                 rs.close();
                 st.close();
+                //Creamos una cookie de sesion
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario",usuarios.getUsuario());
+                session.setAttribute("token",utils.token.generateRandomToken(25,usuarios.getUsuario()));
+                //Cambia el token si lo vuelvo a crear?
+                System.out.print("Token nuevo\n");
+                System.out.print(utils.token.generateRandomToken(25,usuarios.getUsuario())+"\n");
+                System.out.print("Token sesion\n");
+                System.out.print(session.getAttribute("token")+"\n");
+
                 return true;
             }
             else {
@@ -67,43 +80,9 @@ public class UsuariosDao {
             return false;
         }
     }
-    //Creamos un método para obtener todos los libros de un usuario
-    public List<LibrosLeidos> MostrarLibrosLeidos() throws SQLException, NamingException, ExecutionException, InterruptedException {
-        getConn();
-        //Continuamos
-        System.out.print("en MostrarLibrosLeidos: " + usuarios.getUsuario());
-        Statement st = conn.createStatement();
-        String sql = "SELECT  u.usuario, u.fecha_insert, br.fecha_lectura, b.book_title " +
-                "FROM usuario u " +
-                "join books_read br on u.usuario_id = br.usuario_id " +
-                "join books b on br.book_id = b.book_id " +
-                "where usuario = '"+ usuarios.getUsuario() + "'";
-        System.out.print(sql);
-        ResultSet rs = st.executeQuery(sql );
-        //Recorrer el rs (resultset) y generar una lista para componer en el jsp el código de forma dinámica
-        List<LibrosLeidos>  milista = new ArrayList<>();
-        while (rs.next()){
-
-            LibrosLeidos elem = new LibrosLeidos();
-                  /*
-            elem.setUsuario(rs.getString(1));
-            elem.setFecha_insert(rs.getDate(2));
-            elem.setFecha_lectura(rs.getDate(3));
-            elem.setBook_title(rs.getString(4));
-            */
-
-            elem.setUsuario(rs.getString("usuario"));
-            elem.setFecha_insert(rs.getDate("fecha_insert"));
-            elem.setFecha_lectura(rs.getDate("fecha_lectura"));
-            elem.setBook_title(rs.getString("book_title"));
 
 
-            milista.add(elem);
-        }
-        //conn.close();
-        rs.close();
-        st.close();
-
-        return milista;
+    public Usuarios getUsuarios() {
+        return usuarios;
     }
 }

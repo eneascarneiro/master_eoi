@@ -10,8 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-        rel="stylesheet"  type="text/css" />
     <link href="<c:url value="/resources/css/main.css" />"
         rel="stylesheet"  type="text/css" />
 
@@ -20,9 +18,9 @@
 
 <body>
     <div id="wrap">
-
-        <c:import url="/WEB-INF/views/tags/navbar.jsp"/>
-
+        <div id="wra1p" >
+             <c:import url="/WEB-INF/views/tags/navbar.jsp"/>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
@@ -30,32 +28,49 @@
                     <c:import url="/WEB-INF/views/tags/menu.jsp"/>
                   </div>
                 </div>
-
                 <div class="col-md-10">
                     <div class = "container  w-50">
-                                <h1 class = "text-center"> Libros leidos </h1>
-                            </div>
-                            <div class = "container  w-50 ">
-                                <h2 class = "text-center"> Enhorabuena <Nombre> has leido <num> libros </h2>
-                                <c:forEach items="${listaLibros}" var="lItem">
-                                    <div class ="col-sm-3">
-                                        <label>Usuario: </label>
-                                        <c:out value="${lItem.usuario}"/>
-                                    </div>
-                                    <div class ="col-sm-3">
-                                        <label>Fecha alta: </label>
-                                        <c:out value="${lItem.fecha_insert}"/>
-                                    </div>
-                                    <div class ="col-sm-3">
-                                        <label>Fecha lectura: </label>
-                                        <c:out value="${lItem.fecha_lectura}"/>
-                                    </div>
-                                    <div class ="col-sm-3">
-                                        <label>Nombre libro: </label>
-                                        <c:out value="${lItem.book_title}"/>
-                                    </div>
-                                </c:forEach>
-                            </div>
+                        <h1 class = "text-center"> Libros leidos </h1>
+                    </div>
+
+                    <h2 class = "text-center"> Enhorabuena <Nombre> has leido <num> libros </h2>
+                    <div class = "row">
+                        <div class ="col-sm-2">
+                            <label>Usuario: </label>
+                        </div>
+                        <div class ="col-sm-2">
+                            <label>Fecha alta: </label>
+                        </div>
+                        <div class ="col-sm-2">
+                            <label>Fecha lectura: </label>
+                        </div>
+                        <div class ="col-sm-2">
+                            <label>Nombre libro: </label>
+                        </div>
+                        <div class ="col-sm-2">
+                                <label>Accion: </label>
+                        </div>
+                    </div>
+                    <c:forEach items="${listaLibros}" var="lItem">
+                    <div class = "row">
+                        <div class ="col-sm-2">
+                            <c:out value="${lItem.usuario}"/>
+                        </div>
+                        <div class ="col-sm-2">
+                            <c:out value="${lItem.fecha_insert}"/>
+                        </div>
+                        <div class ="col-sm-2">
+                            <c:out value="${lItem.fecha_lectura}"/>
+                        </div>
+                        <div class ="col-sm-2">
+                            <c:out value="${lItem.book_title}"/>
+                        </div>
+                        <div class ="col-sm-2">
+                            <a href="/librosleidos?opt=MostrarDetalleLibro&id_libro=${lItem.book_id}" class ="btn btn-danger mb-3">Detalle</a>
+                        </div>
+                    </div>
+                    </c:forEach>
+
             </div><!--/col-->
           </div><!--/row-->
 
@@ -65,7 +80,9 @@
     <c:import url="/WEB-INF/views/tags/footer.jsp"/>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/demo.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/json2.js" />"></script>
   <script type="text/javascript" src="<c:url value="/resources/js/date.format.js" />"></script>

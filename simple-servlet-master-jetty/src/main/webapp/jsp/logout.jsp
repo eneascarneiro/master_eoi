@@ -28,21 +28,19 @@
                     </div>
                     <div class="col-md-10">
                         <div class = "container  w-50">
-                            <h1 class = "text-center"> Bienvenido a lectores </h1>
-                        </div>
-                        <p>Now try the  <a href="count?acc=7&suma=55">servlet.Counter servlet</a></p>
-                        <p>Now try bad  <a href="count?accc=7&suma=55">servlet.Counter servlet</a></p>
-                        <p>Here is a <a href="jspcount"> simple JSP (Java Servlet Page)</a></p>
+                            <h1 class = "text-center"> Nos vemos pronto <c:out value="${usuario}"/> </h1>
 
+                        </div>
+
+                       <%
+
+                       %>
                     </div><!--/col-->
                 </div><!--/row-->
             </div>
-
       </div>
+  <c:import url="/WEB-INF/views/tags/footer.jsp"/>
 
-            <div id="wra2p" >
-                    <c:import url="/WEB-INF/views/tags/footer.jsp"/>
-            </div>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

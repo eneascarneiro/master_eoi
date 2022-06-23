@@ -1,21 +1,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">                                   
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="barranavegacion" >
+    <div class="container fluid">
+      <div class="logo">
+        <img th:src="@{/img/eoilogo.png}">
+      </div>
+      <div class="navbar-header">
         <a class="navbar-brand" href="#">Lectores empedernidos</a>
-        </div>
-        <div class="navbar-collapse collapse">  
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="<c:url value="/" />">Home</a></li>
-            <li><a href="<c:url value="/login" />">Login</a></li>
-            <li><a href="<c:url value="/logout" />">Logout</a></li>
-            <li><a href="<c:url value="/librosleidos" />">Forms</a></li>
-          </ul>
-        </div>   			      		 
-  </div>
-</div>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="menu">
+
+              <li class="nav-item"><a href="<c:url value="/" />" class="nav-link active" >Home</a></li>
+              <li class="nav-item"><a href="<c:url value="/loginfrm"  />" class="nav-link" >Login</a></li>
+              <li class="nav-item"><a href="<c:url value="/login?opt=out" />" class="nav-link" >Logout</a></li>
+              <li class="nav-item"><a href="<c:url value="/librosleidos" />" class="nav-link" >Libros leidos</a></li>
+
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+

@@ -23,6 +23,15 @@
       <servlet-name>servlet.Login</servlet-name>
       <url-pattern>/login/*</url-pattern>
    </servlet-mapping>
+   <servlet>
+      <servlet-name>servlet.LibrosLeidos</servlet-name>
+      <servlet-class>servlet.LibrosLeidos</servlet-class>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>servlet.LibrosLeidos</servlet-name>
+      <url-pattern>/librosleidos/*</url-pattern>
+   </servlet-mapping>
 
    <servlet>
       <servlet-name>jspcount.jsp</servlet-name>
@@ -41,7 +50,28 @@
       <servlet-name>mostrarlibros.jsp</servlet-name>
       <url-pattern>/mostrarlibros/*</url-pattern>
    </servlet-mapping>
-
-
-
+   <servlet>
+      <servlet-name>mostrardetalle.jsp</servlet-name>
+      <jsp-file>/jsp/mostrardetalle.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>mostrardetalle.jsp</servlet-name>
+      <url-pattern>/mostrardetalle/*</url-pattern>
+   </servlet-mapping>
+   <servlet>
+      <servlet-name>login.jsp</servlet-name>
+      <jsp-file>/jsp/login.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>login.jsp</servlet-name>
+      <url-pattern>/loginfrm/*</url-pattern>
+   </servlet-mapping>
+   <servlet>
+      <servlet-name>logout.jsp</servlet-name>
+      <jsp-file>/jsp/logout.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>logout.jsp</servlet-name>
+      <url-pattern>/logoutfrm/*</url-pattern>
+   </servlet-mapping>
 </web-app>
