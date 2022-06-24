@@ -2,6 +2,7 @@ package dao;
 
 import DTO.BookDetalle;
 import DTO.LibrosLeidos;
+import DTO.UsuariosDTO;
 import model.Books;
 import model.Usuarios;
 import utils.ConexionBaseDatos;
@@ -124,17 +125,36 @@ public class BooksDao {
         st.close();
 
         return milista;
-
-        /*
-            1.- Crear un servlet que se llame libros que:
-                    a.-lea el listado de libros del dto
-                    b.-LLame a la nueva pagina jsp con nombre mostrarlibrosdetalle.jsp
-                    c.-mostrarlibrosdetalle.jsp en grid de datos debe ofrecer un link para la compra del libro
-                    d.-Lo que hara comprar será :
-                                Insertar el carrito el contenido del libro usando la sesion
-
-
-
-         */
+    }
+    public  boolean ComprarLibros(HttpServletRequest request) throws SQLException {
+        //Se lee la sesion
+        HttpSession session = request.getSession();
+        List<BookDetalle> listacarrito = new ArrayList<>();
+        listacarrito = (List<BookDetalle>) session.getAttribute("listacarrito");
+        //Buscamos el usuario
+        System.out.println("usr:" + session.getAttribute("usuario"));
+        if (listacarrito.size() > 0) {
+            //pedimos la conexion al pool
+            try {
+                getConn();
+                Statement st = conn.createStatement();
+                for (int indice = 0; indice < listacarrito.size(); indice++) {
+                    //Por cada elemento se inserta en la bbdd
+                    System.out.println("Inserting records into the table...");
+                    String sql = "insert into books_sold (book_id, usuario_id, fecha_venta, precio) values ( " +
+                            listacarrito.get(indice).getBook_id() + " , " +
+                            " ( select usuario_id from usuario where  usuario = '" + session.getAttribute("usuario")  + "') ," +
+                            " CURRENT_TIMESTAMP() , " +
+                            listacarrito.get(indice).getPrecio() + " )";
+                    System.out.println(sql);
+                    st.executeUpdate(sql);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

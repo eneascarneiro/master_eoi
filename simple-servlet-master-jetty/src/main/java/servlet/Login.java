@@ -49,6 +49,8 @@ public class Login extends HttpServlet {
                         e.printStackTrace();
                     } catch (NamingException e) {
                         throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                     //Preparar la salida para invocar al jsp
                     request.setAttribute("listaLibros", lista);
@@ -61,13 +63,10 @@ public class Login extends HttpServlet {
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
-            } catch (NamingException e) {
-                throw new RuntimeException(e);
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
+
         }
     }
 
@@ -110,8 +109,6 @@ public class Login extends HttpServlet {
                         response.sendRedirect("/");
                     }
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (NamingException e) {
                     throw new RuntimeException(e);
                 } catch (ExecutionException e) {
                     throw new RuntimeException(e);

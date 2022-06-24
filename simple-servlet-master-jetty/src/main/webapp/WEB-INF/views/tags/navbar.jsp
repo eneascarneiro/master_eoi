@@ -1,23 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.*" import= "DTO.BookDetalle" session ="true" %>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary"  >
     <div class="container expand-lg">
         <div class="col-md-2">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Lectores empedernidos</a>
-                <br/>
-               Session attributes:
-               <%
-               for (Enumeration e = session.getAttributeNames(); e.hasMoreElements(); )
-               {
-                    String attribName = (String) e.nextElement();
-                    Object attribValue = session.getAttribute(attribName);
 
-               %>
-                   <BR><%= attribName %> - <%= attribValue %>
-               <%
-               }
-               %>
+
 
             </div>
         </div>
@@ -32,6 +21,7 @@
                                 <li class="nav-item"><a href="<c:url value="/login?opt=out" />" class="nav-link" >Logout</a></li>
                                 <li class="nav-item"><a href="<c:url value="/librosleidos" />" class="nav-link" >Libros leidos</a></li>
                                 <li class="nav-item"><a href="<c:url value="/libros" />" class="nav-link" >Venta de libros</a></li>
+                                <li class="nav-item"><a href="<c:url value="/sesion" />" class="nav-link" >Datos de sesión</a></li>
                             </div>
                         </ul>
                     </div>
@@ -49,23 +39,24 @@
                                                 <th>Id</th>
                                                 <th>Nombre</th>
                                                 <th>Precio</th>
-                                                <th></th>
+                                                <th>Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <%
-
-                                             Object table_content = session.getAttribute("strlistacarrito");
-
-                                                       %>
-                                                            <%= table_content %>
-
-
+                                            <c:set var="listItem" scope="session" value="${listacarrito}"/>
+                                            <c:forEach items="${listItem}" var="item">
+                                            <tr>
+                                                <th><c:out value="${item.book_id}" /></th>
+                                                <th><c:out value="${item.book_title}" /></th>
+                                                <th><c:out value="${item.precio}" /></th>
+                                                <th><a href="#" >Eliminar elemento</a>   </th>
+                                            </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
 
-                                    <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
-                                    <a href="#" id="comprar-carrito" class="button u-full-width">Comprar</a>
+                                    <a href="/libros?opt=vaciar" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                                    <a href="/libros?opt=comparlista" id="comprar-carrito" class="button u-full-width">Comprar</a>
                                 </div>
                             </li>
                         </ul>
@@ -83,7 +74,16 @@
                                                 <th>Precio</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                                <c:set var="listItem" scope="session" value="${listacompra}"/>
+                                                <c:forEach items="${listItem}" var="item">
+                                                <tr>
+                                                <th><c:out value="${item.book_id}" /><th>
+                                                <th><c:out value="${item.book_title}" /><th>
+                                                <th><c:out value="${item.precio}" /><th>
+                                                </tr>
+                                                </c:forEach>
+                                        </tbody>
                                     </table>
                                 </div>
                             </li>

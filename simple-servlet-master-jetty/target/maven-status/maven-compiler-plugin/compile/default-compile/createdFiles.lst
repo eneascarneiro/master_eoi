@@ -1,11 +1,12 @@
-model\Books.class
 servlet\Counter.class
 servlet\Libros.class
 utils\ConexionBaseDatos.class
 utils\token.class
-DTO\BookDetalle.class
 DTO\LibrosLeidos.class
 servlet\Login.class
+model\Books.class
+DTO\BookDetalle.class
 model\Usuarios.class
+DTO\UsuariosDTO.class
 dao\BooksDao.class
 dao\UsuariosDao.class

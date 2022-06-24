@@ -2,6 +2,7 @@ package dao;
 
 import DTO.BookDetalle;
 import DTO.LibrosLeidos;
+import DTO.UsuariosDTO;
 import model.Usuarios;
 import utils.ConexionBaseDatos;
 
@@ -44,7 +45,7 @@ public class UsuariosDao {
             conn = getConnection();
         }
     }
-    public boolean ValidarUsuario (HttpServletRequest request) throws SQLException, NamingException, ExecutionException, InterruptedException {
+    public boolean ValidarUsuario (HttpServletRequest request) throws SQLException {
         if (usuarios.usr_informado > 0){
             getConn();
             //Continuamos
@@ -82,6 +83,35 @@ public class UsuariosDao {
         }
     }
 
+    public UsuariosDTO GetUserData(HttpServletRequest request) throws SQLException {
+        getConn();
+        //Leemos el usuario de la sesion
+        //Se lee la sesion
+        HttpSession session = request.getSession();
+        String usuario = (String) session.getAttribute("usuario");
+        UsuariosDTO usuariosDTO = new UsuariosDTO();
+        //Continuamos
+        System.out.println("en GetUserData: " );
+        Statement st = conn.createStatement();
+        String sql = "SELECT * FROM Usuario where usuario = '" + usuario + "'";
+        System.out.print(sql);
+        ResultSet rs = st.executeQuery(sql );
+        if (rs.next()) {
+            usuariosDTO.setUsuario_id (rs.getInt("usuario_id"));
+            usuariosDTO.setUsuario(rs.getString("usuario"));
+            usuariosDTO.setPassword(rs.getString("password"));
+            usuariosDTO.setFecha_insert(rs.getDate("fecha_insert"));
+            usuariosDTO.setFecha_update(rs.getDate("fecha_update"));
+            rs.close();
+            st.close();
+            return usuariosDTO;
+        }
+        else {
+            rs.close();
+            st.close();
+            return null;
+        }
+    }
 
     public Usuarios getUsuarios() {
         return usuarios;
