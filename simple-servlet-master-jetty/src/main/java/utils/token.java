@@ -49,8 +49,7 @@ public class token {
         //Creamos una cookie de sesion
         HttpSession session = request.getSession();
         //eliminamos el token
-        session.removeAttribute("token");
-        session.removeAttribute("usuario");
+        session.invalidate();
 
     }
 

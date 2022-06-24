@@ -1,5 +1,6 @@
 model\Books.class
 servlet\Counter.class
+servlet\Libros.class
 utils\ConexionBaseDatos.class
 utils\token.class
 DTO\BookDetalle.class

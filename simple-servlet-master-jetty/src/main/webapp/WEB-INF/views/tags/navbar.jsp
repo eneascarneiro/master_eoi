@@ -1,10 +1,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@page import="java.util.*" import= "DTO.BookDetalle" session ="true" %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary"  >
     <div class="container expand-lg">
         <div class="col-md-2">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Lectores empedernidos</a>
+                <br/>
+               Session attributes:
+               <%
+               for (Enumeration e = session.getAttributeNames(); e.hasMoreElements(); )
+               {
+                    String attribName = (String) e.nextElement();
+                    Object attribValue = session.getAttribute(attribName);
+
+               %>
+                   <BR><%= attribName %> - <%= attribValue %>
+               <%
+               }
+               %>
+
             </div>
         </div>
         <div class="col-md-10">
@@ -32,13 +46,22 @@
                                     <table id="lista-carrito" class="u-full-width">
                                         <thead>
                                             <tr>
-                                                <th>Imagen</th>
+                                                <th>Id</th>
                                                 <th>Nombre</th>
                                                 <th>Precio</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+                                        <tbody>
+                                        <%
+
+                                             Object table_content = session.getAttribute("strlistacarrito");
+
+                                                       %>
+                                                            <%= table_content %>
+
+
+                                        </tbody>
                                     </table>
 
                                     <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
@@ -55,7 +78,7 @@
                                     <table id="lista-compra" class="u-full-width">
                                         <thead>
                                             <tr>
-                                                <th>Imagen</th>
+                                                <th>Id</th>
                                                 <th>Nombre</th>
                                                 <th>Precio</th>
                                             </tr>

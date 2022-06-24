@@ -48,13 +48,14 @@ public class BooksDao {
         //Continuamos
         System.out.print("en Detalle_libro: ");
         Statement st = conn.createStatement();
-        String sql = "SELECT  b.book_id, b.book_title from   books b where  b.book_id =  " + id_libro;
+        String sql = "SELECT  b.book_id, b.book_title, b.precio from   books b where  b.book_id =  " + id_libro;
         System.out.print(sql);
         ResultSet rs = st.executeQuery(sql);
         BookDetalle milibro = new BookDetalle();
         if (rs.next()) {
             milibro.setBook_id(rs.getInt("book_id"));
             milibro.setBook_tittle(rs.getString("book_title"));
+            milibro.setPrecio(rs.getDouble("precio"));
             rs.close();
             st.close();
             return milibro;

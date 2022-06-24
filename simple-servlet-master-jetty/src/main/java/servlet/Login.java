@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -29,7 +30,9 @@ public class Login extends HttpServlet {
                 request.getParameter("password") == null || request.getParameter("password") == "") {
             response.sendRedirect("/");
         } else {
-
+            //Reseteo la sesion
+            HttpSession session = request.getSession();
+            session.invalidate();
             //Si todo va bien consultamos la BBDD , tabla usuarios con usr y password
             UsuariosDao usuariosDao = new UsuariosDao(request.getParameter("user"), request.getParameter("password"));
             //Si son correctos pagina de entrada
