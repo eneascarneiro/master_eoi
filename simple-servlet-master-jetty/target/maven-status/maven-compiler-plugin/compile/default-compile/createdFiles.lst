@@ -1,6 +1,7 @@
 servlet\Counter.class
 servlet\Libros.class
 utils\ConexionBaseDatos.class
+utils\CookiesInternas.class
 utils\token.class
 DTO\LibrosLeidos.class
 servlet\Login.class

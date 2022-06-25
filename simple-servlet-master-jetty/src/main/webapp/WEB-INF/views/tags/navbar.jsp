@@ -19,9 +19,6 @@
                                 <li class="nav-item"><a href="<c:url value="/" />" class="nav-link active" >Home</a></li>
                                 <li class="nav-item"><a href="<c:url value="/loginfrm"  />" class="nav-link" >Login</a></li>
                                 <li class="nav-item"><a href="<c:url value="/login?opt=out" />" class="nav-link" >Logout</a></li>
-                                <li class="nav-item"><a href="<c:url value="/librosleidos" />" class="nav-link" >Libros leidos</a></li>
-                                <li class="nav-item"><a href="<c:url value="/libros" />" class="nav-link" >Venta de libros</a></li>
-                                <li class="nav-item"><a href="<c:url value="/sesion" />" class="nav-link" >Datos de sesión</a></li>
                             </div>
                         </ul>
                     </div>

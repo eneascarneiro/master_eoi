@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -54,6 +57,23 @@ public class Login extends HttpServlet {
                     }
                     //Preparar la salida para invocar al jsp
                     request.setAttribute("listaLibros", lista);
+                    //Añadir una cookie que guarde el num de elementos
+                    utils.CookiesInternas.crearcookie(response,"usuario",usuariosDao.getUsuarios().getUsuario());
+                    utils.CookiesInternas.crearcookie(response,"num_libros_leidos", String.valueOf(lista.size()));
+                    //Guardamos la ip
+                    String ip = "";
+                    Enumeration e = NetworkInterface.getNetworkInterfaces();
+                    while(e.hasMoreElements())
+                    {
+                        NetworkInterface n = (NetworkInterface) e.nextElement();
+                        Enumeration ee = n.getInetAddresses();
+                        while (ee.hasMoreElements())
+                        {
+                            InetAddress i = (InetAddress) ee.nextElement();
+                            ip = i.getHostAddress();
+                        }
+                    }
+                    utils.CookiesInternas.crearcookie(response,"ip", ip);
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/mostrarlibros.jsp");
                     requestDispatcher.forward(request, response);
 

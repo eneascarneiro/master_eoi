@@ -93,4 +93,13 @@
       <servlet-name>DatosSesion.jsp</servlet-name>
       <url-pattern>/sesion/*</url-pattern>
    </servlet-mapping>
+
+   <servlet>
+      <servlet-name>DatosCookies.jsp</servlet-name>
+      <jsp-file>/jsp/DatosCookies.jsp</jsp-file>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>DatosCookies.jsp</servlet-name>
+      <url-pattern>/cookies/*</url-pattern>
+   </servlet-mapping>
 </web-app>
