@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="viewport" content="width=device-width"></meta>
+
+
+    <title layout:title-pattern="$LAYOUT_TITLE :: $CONTENT_TITLE" th:text="#{Layout.Title}"></title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="#" th:href="@{/css/select2.min.css}"/>
+    <link rel="stylesheet" href="#" th:href="@{/css/select2-bootstrap.min.css}"/>
+
+    <link rel="stylesheet" href="#" th:href="@{/css/AdminLTE.css}"/>
+    <link rel="stylesheet" href="#" th:href="@{/css/skins/_all-skins.min.css}"/>
+
+    <!--Bootstrap Select-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"/>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="icon" href="#" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="#" th:src="@{/js/app.min.js}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+    <script src="#" th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+
+    <!-- BootStrap DatePicker -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.min.css}"/>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var menudd = Cookies.get('menu-dd');
+
+            if (menudd != null) {
+                $("#" + menudd).addClass("active");
+            } else {
+                Cookies.set('menu-dd', "user");
+            }
+
+            $(".treeview").each(function () {
+                $(this).click(function () {
+                    $(this.id).addClass("active");
+                    $("#" + Cookies.get('menu-dd')).removeClass("active");
+                    Cookies.set('menu-dd', this.id);
+                });
+            });
+
+            $('.datetimepicker').datetimepicker({
+                "allowInputToggle": true,
+                "showClose": true,
+                "showClear": true,
+                "showTodayButton": true,
+                "format": "YYYY-MM-DD HH:mm:ss",
+            });
+        });
+    </script>
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini fuelux">
+<div class="wrapper">
+    <!-- Main Header -->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="#" th:href="@{/}" class="logo">
+            <span class="logo-mini"><span th:utext="#{Layout.Title.Acronym}"></span></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b th:text="#{Layout.Title}"></b></span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs"><span th:text="${username}"></span> <i
+                                    class="fa fa-gears"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <p><span th:text="${username}"></span> </p>
+
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#" th:text="#{Layout.Edit.Profile}"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#" th:text="#{Layout.Change.Password}"></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a th:href="@{/logout}" th:text="#{Layout.Close.Session}"></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+            </div>
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="treeview" th:each="menuItem : ${menuList}">
+                    <a th:href="${menuItem.url}" th:text="${menuItem.description}"></a>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+
+            <div align="bottom" class="bottom" >
+                <img th:src="@{/img/logo-bottom.png}"/>
+            </div>
+
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <section class="content-header" layout:fragment="breadcrumb"></section>
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <section class="content" layout:fragment="content"></section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <strong th:text="#{Layout.Copyright}"></strong>
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div>
+
+<!--Bootstrap Select-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+<!--Bootstrap DatePicker-->
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+</body>
+</html>

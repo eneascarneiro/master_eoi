@@ -1,0 +1,72 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="#{Eliminar.Cliente}"></title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1 th:text="#{Eliminar.SubMessage}"></h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> <span th:text="#{Home.Title}"/></a></li>
+        <li class="active" th:text="#{Eliminar.Cliente}"></li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">&nbsp;</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" th:object="${task}" method="post">
+
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <input th:type="hidden" th:field="${cliente.codSocio}"/>
+                            <label for="tipoPersona"th:text="#{Eliminar.TipoPersona}"></label>
+                            <input type="text"
+                                   th:field="${cliente.nomTipoPersona}"
+                                   name="tipoPersona" class="form-control" id="tipoPersona" placeholder="Tipo Persona" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipoDocumento" th:text="#{Eliminar.TipoDocumento}"></label>
+                            <input type="text"
+                                   th:field="${cliente.nomTipoDocumento}"
+                                   name="tipoDocumento" class="form-control" id="tipoDocumento" placeholder="Tipo Documento" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nroDocumento" th:text="#{Eliminar.NroDocumento}"></label>
+                            <input type="text"
+                                   th:field="${cliente.nroDocumento}"
+                                   name="nroDocumento" class="form-control" id="nroDocumento" placeholder="Nro. Documento" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nomCompleto" th:text="#{Eliminar.Nombres}"></label>
+                            <input type="text"
+                                   th:field="${cliente.nomCompleto}"
+                                   name="nomCompleto" class="form-control" id="nomCompleto" placeholder="Nombres" disabled/>
+                        </div>
+
+                        <div class="form-group">
+                            <a th:href="@{/clientes/list}" class="btn btn-default" role="button" title="Back list" th:text="#{Eliminar.Cancelar}">
+                                <span aria-hidden="true"></span>
+                            </a>
+                            <button type="submit" class="btn btn-danger" title="Delete Data" th:text="#{Eliminar.Aceptar}"></button>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
