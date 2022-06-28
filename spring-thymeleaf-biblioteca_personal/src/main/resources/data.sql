@@ -38,7 +38,10 @@ INSERT INTO `MENU` (`ID`, `DESCRIPTION`, `APP_ORDER`, `ACTIVE`, `URL`)
 VALUES
 	(1,'Home',0, 1, '/'),
 	(2,'Tasks',1, 1, '/tasks'),
-	(3,'Admin',100, 1, '/admin');
+	(3,'Admin',10, 1, '/admin'),
+	(4,'Books',20, 1, '/books'),
+	(5,'Books read',30, 1, '/booksread'),
+	(6,'Books sold',40, 1, '/bookssold');
 
 INSERT INTO `MENU_ROLES` (`MENU_ID`, `ROLES_ID`)
 VALUES
@@ -46,7 +49,13 @@ VALUES
 	(1,2),
 	(2,1),
 	(2,2),
-	(3,1);
+	(3,1),
+    (4,1),
+    (4,2),
+    (5,1),
+    (5,2),
+    (6,1),
+    (6,2);
 
 -- Tasks
 INSERT INTO `TASK` (`ID`, `USER_ID`, `STARTING_DATE`, `ENDING_DATE`, `NAME`)
@@ -69,8 +78,7 @@ VALUES
 
 
 INSERT INTO `books`
-(`id`,
-`book_title`)
+
 VALUES
 
 (1,'Mi libro numero  1'   ),

@@ -2,8 +2,6 @@ package com.example.demo.data.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
 
 @Entity
 public class Books implements Serializable {
@@ -12,15 +10,15 @@ public class Books implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    private String book_title;
+    private String booktitle;
 
 
-    public String getBook_title() {
-        return book_title;
+    public String getBooktitle() {
+        return booktitle;
     }
 
-    public void setBook_title(String book_title) {
-        this.book_title = book_title;
+    public void setBooktitle(String booktitle) {
+        this.booktitle = booktitle;
     }
 
     public Integer getId() {

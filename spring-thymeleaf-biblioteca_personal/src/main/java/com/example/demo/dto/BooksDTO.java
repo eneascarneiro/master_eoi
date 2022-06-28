@@ -1,10 +1,8 @@
 package com.example.demo.dto;
 
-import javax.persistence.Column;
-
 public class BooksDTO {
     private Integer id;
-    private String book_title;
+    private String bookTitle;
 
     public Integer getId() {
         return id;
@@ -14,11 +12,11 @@ public class BooksDTO {
         this.id = id;
     }
 
-    public String getBook_title() {
-        return book_title;
+    public String getBookTitle() {
+        return bookTitle;
     }
 
-    public void setBook_title(String book_title) {
-        this.book_title = book_title;
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 }
