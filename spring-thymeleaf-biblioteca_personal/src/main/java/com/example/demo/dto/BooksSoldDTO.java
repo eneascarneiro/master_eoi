@@ -52,4 +52,5 @@ public class BooksSoldDTO {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
+
 }

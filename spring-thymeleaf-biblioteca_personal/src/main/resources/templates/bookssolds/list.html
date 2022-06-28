@@ -1,0 +1,87 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>Book List</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Book's  Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Books</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/books/create}">New book</a>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre libro</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item,iter : ${books}">
+                                    <td th:text="${item.id}"></td>
+                                    <td th:text="${item.bookTitle}"></td>
+                                    <td>
+                                        <a href="#" class="btn btn-default" th:href="@{'/books/' + ${item.id}}"
+                                           title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="#" class="btn btn-default" th:href="@{'/books/' + ${item.id} + '/edit'}"
+                                           title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button class="btn btn-danger" type="submit" value="Delete"
+                                                th:formaction="'/books/' + ${item.id} + '/delete'">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <!--                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/delete'}"-->
+                                        <!--                                           title="Delete"><span class="glyphicon glyphicon-trash"></span></a>-->
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(books.content)}">
+                                    <td colspan="13" class="text-center">No books</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div th:if="${not #lists.isEmpty(books.content)}">
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <div th:if="${books.totalPages > 0}" class="pagination"
+                                     th:each="pageNumber : ${pageNumbers}">
+                                    <li th:class="${pageNumber==books.number + 1} ? active">
+                                        <a href="#" th:href="@{/books(size=${books.size}, page=${pageNumber})}"
+                                           th:text=${pageNumber}></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

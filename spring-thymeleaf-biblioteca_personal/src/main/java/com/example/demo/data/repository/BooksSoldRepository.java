@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BooksSoldRepository extends JpaRepository<BooksSold, Integer> {
     Page<BooksSold> findByUserId(Integer userId, Pageable pageable);
+    Page<BooksSold> findAll( Pageable pageable);
 }
