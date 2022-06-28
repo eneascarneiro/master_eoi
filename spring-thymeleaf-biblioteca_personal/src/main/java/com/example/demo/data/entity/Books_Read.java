@@ -12,6 +12,8 @@ public class Books_Read implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
+    private Date fecha_lectura;
     @ManyToOne
     private Books books;
 
@@ -40,5 +42,13 @@ public class Books_Read implements Serializable {
 
     public void setBooks(Books books) {
         this.books = books;
+    }
+
+    public Date getFecha_lectura() {
+        return fecha_lectura;
+    }
+
+    public void setFecha_lectura(Date fecha_lectura) {
+        this.fecha_lectura = fecha_lectura;
     }
 }
