@@ -23,8 +23,8 @@ public class BooksReadDTO {
         return fechaLectura;
     }
 
-    public void setFechaLectura(Date fecha_lectura) {
-        this.fechaLectura = fecha_lectura;
+    public void setFechaLectura(Date fechaLectura) {
+        this.fechaLectura = fechaLectura;
     }
 
     public Integer getBooksId() {

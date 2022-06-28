@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 public class BooksDTO {
     private Integer id;
-    private String bookTitle;
+    private String booktitle;
 
     public Integer getId() {
         return id;
@@ -13,10 +13,10 @@ public class BooksDTO {
     }
 
     public String getBookTitle() {
-        return bookTitle;
+        return booktitle;
     }
 
     public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+        this.booktitle = bookTitle;
     }
 }
