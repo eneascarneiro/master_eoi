@@ -47,7 +47,7 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
             model
                     .addAttribute("username", user.getUserName())
                     .addAttribute("bookssold", all)
-                    .addAttribute("admin","visible")
+                    .addAttribute("admin","")
                     .addAttribute(pageNumbersAttributeKey, getPageNumbers(all));
         }
         else {

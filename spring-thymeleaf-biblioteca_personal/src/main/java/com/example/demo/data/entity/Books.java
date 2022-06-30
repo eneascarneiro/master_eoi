@@ -12,7 +12,6 @@ public class Books implements Serializable {
     @Column(nullable = false)
     private String booktitle;
 
-
     public String getBooktitle() {
         return booktitle;
     }

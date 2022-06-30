@@ -9,6 +9,9 @@ public class BooksSoldDTO {
 
     private Integer booksId;
 
+    private String booksTitle;
+    
+
     private Integer userId;
 
     private float precio;
@@ -51,6 +54,14 @@ public class BooksSoldDTO {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public String getBooksTitle() {
+        return booksTitle;
+    }
+
+    public void setBooksTitle(String booksTitle) {
+        this.booksTitle = booksTitle;
     }
 
 }
