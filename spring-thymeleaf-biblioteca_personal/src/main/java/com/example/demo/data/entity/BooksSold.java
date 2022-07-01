@@ -2,6 +2,7 @@ package com.example.demo.data.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,7 +17,7 @@ public class BooksSold implements Serializable {
     private Float precio;
 
     @Column(nullable = false)
-    private Date date;
+    private ZonedDateTime date;
     @ManyToOne
     private Books books;
 
@@ -47,11 +48,11 @@ public class BooksSold implements Serializable {
         this.precio = precio;
     }
 
-    public Date getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(ZonedDateTime date) {
         this.date = date;
     }
 

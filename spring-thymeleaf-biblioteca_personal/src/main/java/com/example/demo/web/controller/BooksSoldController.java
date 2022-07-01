@@ -102,14 +102,12 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
     }
 
     @GetMapping("/bookssolds/{id}/edit")
-    @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         model.addAttribute("bookssold", this.service.findById(id).get());
         return "bookssolds/edit";
     }
 
     @GetMapping("/bookssolds/create")
-    @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String create(ModelMap model) {
         final BooksSoldDTO dto = new BooksSoldDTO();
         final List<BooksDTO> all = this.serviceBooks.findAll();
@@ -121,8 +119,10 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
 
     @Transactional
     @PostMapping(value = { "/bookssolds/{id}/edit", "/bookssolds/create" })
-    @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String save(BooksSoldDTO dto) {
+        System.out.println("creando el registro antes:" + dto.getBooksId() + ": usuario :" + dto.getUserId());
+        dto.setUserId(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
+        System.out.println("creando el registro:" + dto.getBooksId() + ": usuario :" + dto.getUserId());
         return String.format("redirect:/bookssolds/%s", this.service.save(dto).getId());
     }
 

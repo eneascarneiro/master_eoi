@@ -4,6 +4,7 @@ package com.example.demo.service.mapper;
 import com.example.demo.data.entity.BooksSold;
 import com.example.demo.data.repository.BooksRepository;
 import com.example.demo.dto.BooksSoldDTO;
+import com.example.demo.utils.DateUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +15,7 @@ public class BooksSoldMapper extends  AbstractServiceMapper<BooksSold, BooksSold
         final BooksSold entity = new BooksSold();
         entity.setId(dto.getId());
         entity.setPrecio(dto.getPrecio());
-        entity.setDate(dto.getFechaVenta());
+        entity.setDate(DateUtil.stringToDate(dto.getFechaVenta()));
         return entity;
     }
 
@@ -27,7 +28,7 @@ public class BooksSoldMapper extends  AbstractServiceMapper<BooksSold, BooksSold
         //Tenemos que informar el bookTitle
         dto.setBooksTitle(entity.getBooks().getBooktitle());
         dto.setUserId(entity.getUser().getId());
-        dto.setFechaVenta(entity.getDate());
+        dto.setFechaVenta(DateUtil.dateToString(entity.getDate()));
         return dto;
     }
 }

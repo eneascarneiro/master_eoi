@@ -25,13 +25,22 @@
                             <input th:type="hidden" th:field="${bookssold.id}"/>
                             <div class="tab-pane active" id="1a">
                                 <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div th:if="${#lists.isEmpty(listaLibros)}"  class="form-group col-md-12">
                                         <label for="booksTitle" th:text="#{Books.bookstitle}"></label>
                                         <input type="text" class="form-control"
                                                id="booksTitle"
                                                th:field="${bookssold.booksTitle}"
                                                maxlength="255">
                                     </div>
+                                    <div th:unless="${#lists.isEmpty(listaLibros)}"  class="form-group col-md-12">
+                                        <label for="booksTitle" th:text="#{Books.bookstitle}"></label>
+                                        <select  th:field="${bookssold.booksId}" class="form-control" id="dropDownList">
+                                            <option value="0">select option</option>
+                                            <option th:each="book : ${listaLibros}" th:value="${book.id}" th:text="${book.bookTitle}"></option>
+                                        </select>
+                                    </div>
+
+                                    th:with="someVariable=${someValue}"
                                     <div class="form-group col-md-12">
                                         <label for="precio" th:text="#{Books.precio}"></label>
                                         <input type="text" class="form-control"

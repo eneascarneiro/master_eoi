@@ -1,11 +1,12 @@
 package com.example.demo.dto;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class BooksReadDTO {
     private Integer id;
 
-    private Date fechaLectura;
+    private ZonedDateTime fechaLectura;
 
     private Integer booksId;
 
@@ -21,11 +22,11 @@ public class BooksReadDTO {
         this.id = id;
     }
 
-    public Date getFechaLectura() {
+    public ZonedDateTime getFechaLectura() {
         return fechaLectura;
     }
 
-    public void setFechaLectura(Date fechaLectura) {
+    public void setFechaLectura(ZonedDateTime fechaLectura) {
         this.fechaLectura = fechaLectura;
     }
 

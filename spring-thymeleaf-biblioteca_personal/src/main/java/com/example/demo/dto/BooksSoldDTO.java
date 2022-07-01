@@ -1,11 +1,12 @@
 package com.example.demo.dto;
 
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class BooksSoldDTO {
     private Integer id;
 
-    private Date fechaVenta;
+    private String  fechaVenta;
 
     private Integer booksId;
 
@@ -23,11 +24,11 @@ public class BooksSoldDTO {
         this.id = id;
     }
 
-    public Date getFechaVenta() {
+    public String getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(Date fechaVenta) {
+    public void setFechaVenta(String fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 
