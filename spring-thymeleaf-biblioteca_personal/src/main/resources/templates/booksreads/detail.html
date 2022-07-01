@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Detalle de libros comprados</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb" th:object="${booksread}">
+    <h1>Tasks Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/booksreads"><i class="fa fa-tasks"></i> Books</a></li>
+        <li class="active" th:utext="@{'Book Red  ID: <b>' + ${booksread.id}} + '</b>'"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+    <form role="form" th:object="${booksread}" method="post" action="#" th:action="@{'/booksreads/' + ${booksread.id} + '/delete'}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="1a">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="booksTitle" th:text="#{Books.bookstitle}"></label>
+                                        <input type="text" class="form-control"
+                                               id="booksTitle"
+                                               th:field="${booksread.booksTitle}"
+                                               maxlength="255">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="fechaVenta" th:text="#{Books.fechaventa}"></label>
+                                        <div class="input-group date datetimepicker">
+                                            <input id="fechaVenta" type="text" th:field="${booksread.fechaLectura}"
+                                                   th:value="${booksread.fechaLectura}" class="form-control" required/>
+                                            <div class="input-group-addon input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer with-border">
+                    <a th:href="@{/booksreads}" class="btn btn-default" role="button"
+                       title="Back list" th:text="#{General.Back}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <a th:href="@{'/booksreads/' + ${booksread.id} + '/edit'}" class="btn btn-primary" role="button"
+                       title="Back list" th:text="#{General.Edit}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <button type="submit" class="box-title btn btn-danger"
+                            title="Save Data" th:text="#{General.Delete}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

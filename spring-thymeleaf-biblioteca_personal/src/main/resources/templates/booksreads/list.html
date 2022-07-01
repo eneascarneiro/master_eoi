@@ -1,0 +1,87 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>Book Sold List</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Book's Sold  Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">BooksSold</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/booksreads/create}">New sale</a>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Nombre libro</th>
+                                    <th>Fecha de lectura</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item,iter : ${booksread}">
+                                    <td th:text="${item.booksTitle}"></td>
+                                    <td th:text="${item.fechaLectura}"></td>
+                                    <td>
+                                        <a href="#" class="btn btn-default" th:href="@{'/booksreads/' + ${item.id}}"
+                                           title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="#" class="btn btn-default" th:type="${admin}" th:href="@{'/booksreads/' + ${item.id} + '/edit'}"
+                                           title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button class="btn btn-danger" type="submit" value="Delete" th:type="${admin}"
+                                                th:formaction="'/booksreads/' + ${item.id} + '/delete'">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <!--                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/delete'}"-->
+                                        <!--                                           title="Delete"><span class="glyphicon glyphicon-trash"></span></a>-->
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(booksread.content)}">
+                                    <td colspan="13" class="text-center">No books</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div th:if="${not #lists.isEmpty(booksread.content)}">
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <div th:if="${booksread.totalPages > 0}" class="pagination"
+                                     th:each="pageNumber : ${pageNumbers}">
+                                    <li th:class="${pageNumber==booksread.number + 1} ? active">
+                                        <a href="#" th:href="@{/booksreads(size=${booksread.size}, page=${pageNumber})}"
+                                           th:text=${pageNumber}></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
