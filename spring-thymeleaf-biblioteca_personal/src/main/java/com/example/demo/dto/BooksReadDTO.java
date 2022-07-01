@@ -11,6 +11,8 @@ public class BooksReadDTO {
 
     private Integer userId;
 
+    private String booksTitle;
+
     public Integer getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class BooksReadDTO {
 
     public void setUserId(Integer user_id) {
         this.userId = user_id;
+    }
+
+    public String getBooksTitle() {
+        return booksTitle;
+    }
+
+    public void setBooksTitle(String booksTitle) {
+        this.booksTitle = booksTitle;
     }
 }

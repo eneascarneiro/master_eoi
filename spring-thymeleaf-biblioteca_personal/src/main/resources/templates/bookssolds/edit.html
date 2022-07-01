@@ -10,7 +10,7 @@
     <h1>Books Management</h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/bookssold"><i class="fa fa-tasks"></i> Books</a></li>
+        <li><a href="/bookssolds"><i class="fa fa-tasks"></i> Books</a></li>
         <li class="active" th:utext="@{'Book Sold ID: <b>' + ${bookssold.id}} + '</b>'"></li>
     </ol>
 </div>
@@ -26,10 +26,10 @@
                             <div class="tab-pane active" id="1a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="bookstitle" th:text="#{Books.bookstitle}"></label>
+                                        <label for="booksTitle" th:text="#{Books.bookstitle}"></label>
                                         <input type="text" class="form-control"
-                                               id="bookstitle"
-                                               th:field="${bookssold.booktitle}"
+                                               id="booksTitle"
+                                               th:field="${bookssold.booksTitle}"
                                                maxlength="255">
                                     </div>
                                     <div class="form-group col-md-12">
@@ -40,10 +40,10 @@
                                                maxlength="255">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="fechaventa" th:text="#{Books.fechaventa}"></label>
+                                        <label for="fechaVenta" th:text="#{Books.fechaventa}"></label>
                                         <div class="input-group date datetimepicker">
-                                            <input id="fechaventa" type="text" th:field="${bookssold.fechaventa}"
-                                                   th:value="${bookssold.fechaventa}" class="form-control" required/>
+                                            <input id="fechaVenta" type="text" th:field="${bookssold.fechaVenta}"
+                                                   th:value="${bookssold.fechaVenta}" class="form-control" required/>
                                             <div class="input-group-addon input-group-append">
                                                 <div class="input-group-text">
                                                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="box-footer with-border">
-                    <a th:href="@{/bookssold}" class="btn btn-default" role="button"
+                    <a th:href="@{/bookssolds}" class="btn btn-default" role="button"
                        title="Back list" th:text="#{General.Cancel}">
                         <span aria-hidden="true"></span>
                     </a>

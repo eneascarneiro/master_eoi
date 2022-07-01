@@ -20,6 +20,12 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <a class="box-title btn btn-primary" th:href="@{/bookssolds/create}">New sale</a>
+
+                    <div th:switch="${idrole}">
+                        <span th:case="2">Usuario estandard  </span>
+                        <span th:case="1" >Usuario administrador</span>
+                        <span th:case="*">Tipo usuario desconocido </span>
+                    </div>
                 </div>
 
                 <!-- /.box-header -->
@@ -34,27 +40,28 @@
                                     <th>Precio</th>
                                     <th>Fecha de venta</th>
                                     <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="item,iter : ${bookssold}">
                                     <td th:text="${item.booksTitle}"></td>
                                     <td th:text="${item.precio}"></td>
-                                    <td th:text="${#dates.format(${item.fechaVenta}, 'dd-MM-yyyy HH:mm')}"></td>
+                                    <td th:text="${item.fechaVenta}"></td>
                                     <td>
                                         <a href="#" class="btn btn-default" th:href="@{'/bookssolds/' + ${item.id}}"
                                            title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="#" class="btn btn-default" th:type="${admin}" th:href="@{'/bookssolds/' + ${item.id} + '/edit'}"
-                                           title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <button class="btn btn-danger" type="submit" value="Delete" th:type="${admin}"
+                                    </td>
+                                    <td th:if="${admin == 1}">
+                                        <a  href="#" class="btn btn-default"  th:href="@{'/bookssolds/' + ${item.id} + '/edit'}"
+                                            title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button class="btn btn-danger" type="submit" value="Delete"
                                                 th:formaction="'/bookssolds/' + ${item.id} + '/delete'">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
-                                        <!--                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/delete'}"-->
-                                        <!--                                           title="Delete"><span class="glyphicon glyphicon-trash"></span></a>-->
                                     </td>
                                 </tr>
-                                <tr th:if="${#lists.isEmpty(bookssolds.content)}">
+                                <tr th:if="${#lists.isEmpty(bookssold.content)}">
                                     <td colspan="13" class="text-center">No books</td>
                                 </tr>
                                 </tbody>
@@ -64,13 +71,13 @@
                 </div>
 
 
-                <div th:if="${not #lists.isEmpty(bookssolds.content)}">
+                <div th:if="${not #lists.isEmpty(bookssold.content)}">
                     <div class="text-center">
                         <nav>
                             <ul class="pagination" sd:pagination="full">
-                                <div th:if="${bookssolds.totalPages > 0}" class="pagination"
+                                <div th:if="${bookssold.totalPages > 0}" class="pagination"
                                      th:each="pageNumber : ${pageNumbers}">
-                                    <li th:class="${pageNumber==bookssolds.number + 1} ? active">
+                                    <li th:class="${pageNumber==bookssold.number + 1} ? active">
                                         <a href="#" th:href="@{/bookssolds(size=${bookssold.size}, page=${pageNumber})}"
                                            th:text=${pageNumber}></a>
                                     </li>

@@ -23,6 +23,7 @@ public class BooksSoldMapper extends  AbstractServiceMapper<BooksSold, BooksSold
         final BooksSoldDTO dto = new BooksSoldDTO();
         dto.setId(entity.getId());
         dto.setBooksId(entity.getBooks().getId());
+        dto.setPrecio(entity.getPrecio());
         //Tenemos que informar el bookTitle
         dto.setBooksTitle(entity.getBooks().getBooktitle());
         dto.setUserId(entity.getUser().getId());

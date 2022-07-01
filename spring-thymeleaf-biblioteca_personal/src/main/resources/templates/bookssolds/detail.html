@@ -3,20 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>Detalle de libros</title>
+    <title>Detalle de libros comprados</title>
 </head>
 <body>
-<div layout:fragment="breadcrumb" th:object="${book}">
+<div layout:fragment="breadcrumb" th:object="${bookssold}">
     <h1>Tasks Management</h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="/books"><i class="fa fa-tasks"></i> Books</a></li>
-        <li class="active" th:utext="@{'Book ID: <b>' + ${book.id}} + '</b>'"></li>
+        <li><a href="/bookssolds"><i class="fa fa-tasks"></i> Books</a></li>
+        <li class="active" th:utext="@{'Book Sold  ID: <b>' + ${bookssold.id}} + '</b>'"></li>
     </ol>
 </div>
 
 <div layout:fragment="content">
-    <form role="form" th:object="${book}" method="post" action="#" th:action="@{'/books/' + ${book.id} + '/delete'}">
+    <form role="form" th:object="${bookssold}" method="post" action="#" th:action="@{'/bookssolds/' + ${bookssold.id} + '/delete'}">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
@@ -25,8 +25,30 @@
                             <div class="tab-pane active" id="1a">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="name" th:text="#{Books.Name}"></label>
-                                        <p id="name" th:text="${book.bookTitle}"/>
+                                        <label for="booksTitle" th:text="#{Books.bookstitle}"></label>
+                                        <input type="text" class="form-control"
+                                               id="booksTitle"
+                                               th:field="${bookssold.booksTitle}"
+                                               maxlength="255">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="fechaVenta" th:text="#{Books.fechaventa}"></label>
+                                        <div class="input-group date datetimepicker">
+                                            <input id="fechaVenta" type="text" th:field="${bookssold.fechaVenta}"
+                                                   th:value="${bookssold.fechaVenta}" class="form-control" required/>
+                                            <div class="input-group-addon input-group-append">
+                                                <div class="input-group-text">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="booksTitle" th:text="#{Books.precio}"></label>
+                                        <input type="text" class="form-control"
+                                               id="precio"
+                                               th:field="${bookssold.precio}"
+                                               maxlength="255">
                                     </div>
                                 </div>
                             </div>
@@ -35,11 +57,11 @@
                 </div>
 
                 <div class="box-footer with-border">
-                    <a th:href="@{/books}" class="btn btn-default" role="button"
+                    <a th:href="@{/bookssolds}" class="btn btn-default" role="button"
                        title="Back list" th:text="#{General.Back}">
                         <span aria-hidden="true"></span>
                     </a>
-                    <a th:href="@{'/books/' + ${book.id} + '/edit'}" class="btn btn-primary" role="button"
+                    <a th:href="@{'/bookssolds/' + ${bookssold.id} + '/edit'}" class="btn btn-primary" role="button"
                        title="Back list" th:text="#{General.Edit}">
                         <span aria-hidden="true"></span>
                     </a>

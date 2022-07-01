@@ -10,7 +10,6 @@ public class BooksSoldDTO {
     private Integer booksId;
 
     private String booksTitle;
-    
 
     private Integer userId;
 

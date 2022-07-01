@@ -21,6 +21,7 @@ public class BooksReadMapper extends  AbstractServiceMapper<BooksRead, BooksRead
         final BooksReadDTO dto = new BooksReadDTO();
         dto.setId(booksRead.getId());
         dto.setBooksId(booksRead.getBooks().getId());
+        dto.setBooksTitle(booksRead.getBooks().getBooktitle());
         dto.setUserId(booksRead.getUser().getId());
         dto.setFechaLectura(booksRead.getFechaLectura());
         return dto;
