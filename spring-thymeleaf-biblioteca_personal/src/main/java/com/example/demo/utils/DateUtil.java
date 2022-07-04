@@ -14,4 +14,5 @@ public class DateUtil {
     public static ZonedDateTime stringToDate(String stringDate) {
         return ZonedDateTime.parse(stringDate, DATE_FORMATER.withZone(ZoneId.of("UTC")));
     }
+
 }
