@@ -46,5 +46,6 @@ public class Main {
                 clase_director_5.DiezPorCiento());
         System.out.println("5.- JP  para la cero La clase A me da el 10%: " +
                 clase_jp_5.DiezPorCiento());
+        System.out.println("Línea escrita por Gemma");
     }
 }
