@@ -1,30 +1,21 @@
-package com.example.demo.data.entity;
+package com.example.demo.dto;
 
-import com.example.demo.config.CustomPasswordEncoderConfig;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-@Entity
-public class User implements Serializable {
-    CustomPasswordEncoderConfig customPasswordEncoderConfig;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Integer id;
-    @Column(nullable = false)
+
     private String userName;
-    @Column(nullable = false)
+
     private String password;
-    @Temporal(TemporalType.DATE)
+
     private Date date;
-    @Basic(optional = false)
+
     private boolean active;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
-
+    private Set<RoleDTO> roles;
 
     public Integer getId() {
         return id;
@@ -47,7 +38,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = customPasswordEncoderConfig.passwordCoded(password);
+        this.password = password;
     }
 
     public Date getDate() {
@@ -66,13 +57,11 @@ public class User implements Serializable {
         this.active = active;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
-
-
 }
