@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Detalle de libros</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb" th:object="${book}">
+    <h1>Tasks Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/books"><i class="fa fa-tasks"></i> Books</a></li>
+        <li class="active" th:utext="@{'Book ID: <b>' + ${book.id}} + '</b>'"></li>
+    </ol>
+</div>
+
+<div layout:fragment="content">
+    <form role="form" th:object="${book}" method="post" action="#" th:action="@{'/books/' + ${book.id} + '/delete'}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="1a">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="name" th:text="#{Books.Name}"></label>
+                                        <p id="name" th:text="${book.bookTitle}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer with-border">
+                    <a th:href="@{/books}" class="btn btn-default" role="button"
+                       title="Back list" th:text="#{General.Back}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <a th:href="@{'/books/' + ${book.id} + '/edit'}" class="btn btn-primary" role="button"
+                       title="Back list" th:text="#{General.Edit}">
+                        <span aria-hidden="true"></span>
+                    </a>
+                    <button type="submit" class="box-title btn btn-danger"
+                            title="Save Data" th:text="#{General.Delete}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

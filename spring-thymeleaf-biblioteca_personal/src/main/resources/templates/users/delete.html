@@ -1,0 +1,44 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="Borrado de libros"></title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1 th:text="#{Eliminar.SubMessage}"></h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> <span th:text="#{Home.Title}"/></a></li>
+        <li class="active" th:text="#{Eliminar.Cliente}"></li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">&nbsp;</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" th:object="${book}" method="post">
+
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <input th:type="hidden" th:field="${book.id}"/>
+                            <label for="book_title" th:text="#{Books.bookstitle}"></label>
+                            <input type="text"
+                                   th:field="${book.bookTitle}"
+                                   name="book_title" class="form-control" id="book_title" placeholder="Título" disabled/>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.demo.data.entity;
 
 import com.example.demo.config.CustomPasswordEncoderConfig;
+import com.example.demo.utils.PasswordHadling;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 @Entity
 public class User implements Serializable {
-    CustomPasswordEncoderConfig customPasswordEncoderConfig;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -47,7 +48,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = customPasswordEncoderConfig.passwordCoded(password);
+        this.password = PasswordHadling.CodePassword(password);
     }
 
     public Date getDate() {

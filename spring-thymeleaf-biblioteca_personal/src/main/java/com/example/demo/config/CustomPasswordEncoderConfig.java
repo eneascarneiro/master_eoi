@@ -8,15 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class CustomPasswordEncoderConfig {
-    private BCryptPasswordEncoder encoder;
     @Description("Standard PasswordEncoder")
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(4);
     }
-    @Description("Standard password encoder to string")
-    @Bean
-    public String passwordCoded(String psw) {
-        return encoder.encode(psw);
-    }
+
 }

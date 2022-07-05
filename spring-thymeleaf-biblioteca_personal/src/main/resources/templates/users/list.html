@@ -1,0 +1,89 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>Users List</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Book's  Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Books</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <a class="box-title btn btn-primary" th:href="@{/users/create}">New book</a>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+                    <form action="#" class="form" th:action="@{'/'}" method="post">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre usuario</th>
+                                    <th>Fecha último login</th>
+                                    <th>&nbsp</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item,iter : ${users}">
+                                    <td th:text="${item.id}"></td>
+                                    <td th:text="${item.userName}"></td>
+                                    <td th:text="${item.date}"></td>
+                                    <td>
+                                        <a href="#" class="btn btn-default" th:href="@{'/users/' + ${item.id}}"
+                                           title="View"><span class="glyphicon glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="#" class="btn btn-default" th:href="@{'/users/' + ${item.id} + '/edit'}"
+                                           title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button class="btn btn-danger" type="submit" value="Delete"
+                                                th:formaction="'/users/' + ${item.id} + '/delete'">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <!--                                        <a href="#" class="btn btn-default" th:href="@{'/tasks/' + ${task.id} + '/delete'}"-->
+                                        <!--                                           title="Delete"><span class="glyphicon glyphicon-trash"></span></a>-->
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(users.content)}">
+                                    <td colspan="13" class="text-center">No books</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div th:if="${not #lists.isEmpty(users.content)}">
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <div th:if="${users.totalPages > 0}" class="pagination"
+                                     th:each="pageNumber : ${pageNumbers}">
+                                    <li th:class="${pageNumber==users.number + 1} ? active">
+                                        <a href="#" th:href="@{/users(size=${users.size}, page=${pageNumber})}"
+                                           th:text=${pageNumber}></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
