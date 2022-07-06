@@ -20,10 +20,8 @@ spring:
       period: 0
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
+
 server:
   port: 8080
