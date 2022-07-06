@@ -18,8 +18,10 @@ public class BooksSold implements Serializable {
 
     @Column(nullable = false)
     private ZonedDateTime date;
+
     @ManyToOne
     private Books books;
+
 
     @ManyToOne
     private User user;
@@ -63,4 +65,5 @@ public class BooksSold implements Serializable {
     public void setBooks(Books books) {
         this.books = books;
     }
+
 }

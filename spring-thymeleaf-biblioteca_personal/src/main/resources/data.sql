@@ -42,7 +42,8 @@ VALUES
 	(4,'Books',20, 1, '/books'),
 	(5,'Books read',30, 1, '/booksreads'),
 	(6,'Books sold',40, 1, '/bookssolds'),
-    (7,'Usuarios',40, 1, '/users');
+    (7,'Usuarios',50, 1, '/users'),
+    (8,'informes',60,1,'/informes');
 
 INSERT INTO `MENU_ROLES` (`MENU_ID`, `ROLES_ID`)
 VALUES
@@ -57,7 +58,9 @@ VALUES
     (5,2),
     (6,1),
     (6,2),
-    (7,1);
+    (7,1),
+    (8,1),
+        (8,2);
 
 -- Tasks
 INSERT INTO `TASK` (`ID`, `USER_ID`, `STARTING_DATE`, `ENDING_DATE`, `NAME`)

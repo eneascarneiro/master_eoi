@@ -1,0 +1,51 @@
+<!--/* Thymeleaf templating engine, Each token will be replaced by their respective titles in the resulting page. */-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <title>Informe 4 campos</title>
+</head>
+<body>
+<div layout:fragment="breadcrumb">
+    <h1>Book's  Management</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Books</li>
+    </ol>
+</div>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Campo1</th>
+                                    <th>Campo2</th>
+                                    <th>Campo3</th>
+                                    <th>Campo4</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item,iter : ${listado}">
+                                    <td th:text="${item.id}"></td>
+                                    <td th:text="${item.precio}"></td>
+                                    <td th:text="${item.date}"></td>
+                                    <td th:text="${item.date}"></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
