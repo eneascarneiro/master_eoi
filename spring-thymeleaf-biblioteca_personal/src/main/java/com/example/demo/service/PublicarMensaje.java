@@ -16,16 +16,16 @@ public class PublicarMensaje {
         this.publisher = publisher;
     }
 
-    public void  EnviarMensajeEvento(){
+    public void  EnviarMensajeEvento(String mensaje){
         logger.info("Inicio el envío de mensaje por eventos");
-        MessageEvent messageEvent = new MessageEvent(this,"Mensaje estandar");
+        MessageEvent messageEvent = new MessageEvent(this,mensaje);
         publisher.publishEvent(messageEvent);
         logger.info("Evento generado");
 
     }
-    public void  EnviarMensajeSaludo(){
+    public void  EnviarMensajeSaludo(String mensaje){
         logger.info("Inicio el envío de mensaje saludo por eventos");
-        MessageEventSaludo messageEventSaludo = new MessageEventSaludo(this,"Hola me escuchas?");
+        MessageEventSaludo messageEventSaludo = new MessageEventSaludo(this,mensaje);
         publisher.publishEvent(messageEventSaludo);
         logger.info("Evento generado de saludo");
 
