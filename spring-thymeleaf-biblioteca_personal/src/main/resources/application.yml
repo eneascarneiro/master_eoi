@@ -3,12 +3,10 @@ spring:
     serialization:
       indent-output: true
   datasource:
-    url: jdbc:h2:file:./target/h2db/db/demo;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1
-    username: demo
-    password:
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/books
+    username: root
+    password: eneas2805
+
   thymeleaf:
     cache: false
     mode: HTML

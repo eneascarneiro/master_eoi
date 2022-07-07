@@ -6,6 +6,13 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
+@NamedQuery(name = "BooksRead.compras",
+        query = "SELECT br.id,br.fechaLectura,  br.books.id as booksId , " +
+                " br.user.id as userId, br.books.booktitle as booksTitle , " +
+                " bs.date as fechaVenta , bs.precio " +
+                "FROM BooksSold bs, BooksRead br  " +
+                "where bs.books.id = br.books.id and " +
+                " br.books.id > 10")
 public class BooksRead implements Serializable {
 
     @Id

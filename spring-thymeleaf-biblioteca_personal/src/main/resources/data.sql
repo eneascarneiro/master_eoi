@@ -1,3 +1,13 @@
+delete from books_read;
+delete from books_sold;
+delete from books;
+delete from task;
+delete from menu;
+
+delete from menu_roles;
+delete from menu;
+
+
 delete from `USER_ROLES`;
 delete from `ROLE`;
 delete from `USER`;

@@ -1,11 +1,11 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.data.entity.User;
-import com.example.demo.dto.BooksDTO;
+import com.example.demo.dto.RoleDTO;
 import com.example.demo.dto.UserDTO;
-import com.example.demo.service.BooksService;
 import com.example.demo.service.MenuService;
 import com.example.demo.service.UserService;
+import com.example.demo.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -23,15 +23,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class UserController extends AbstractController<UserDTO>  {
     private final UserService service;
+    private final RoleService roleService;
     @Autowired
-    protected UserController(MenuService menuService, UserService servicio) {
+    protected UserController(MenuService menuService, UserService servicio, RoleService roleService) {
         super(menuService);
         this.service = servicio;
+        this.roleService = roleService;
     }
     @GetMapping("/users")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
@@ -56,7 +59,11 @@ public class UserController extends AbstractController<UserDTO>  {
     @GetMapping("/users/{id}/edit")
     @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
+        final List<RoleDTO> all_roles = this.roleService.findAll();
+        final List<RoleDTO> all_roles_activos = (List<RoleDTO>) this.service.findById(id).get().getRoles();
         model.addAttribute("user", this.service.findById(id).get());
+        model.addAttribute("roles", all_roles);
+        model.addAttribute("roles_activos", all_roles_activos);
         return "users/edit";
     }
 
@@ -64,7 +71,9 @@ public class UserController extends AbstractController<UserDTO>  {
     @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String create(ModelMap model) {
         final UserDTO dto = new UserDTO();
+        final List<RoleDTO> all_roles = this.roleService.findAll();
         model.addAttribute("user", dto);
+        model.addAttribute("roles", all_roles);
         return "users/edit";
     }
 

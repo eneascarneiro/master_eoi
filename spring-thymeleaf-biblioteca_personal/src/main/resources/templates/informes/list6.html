@@ -25,24 +25,24 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Campo1</th>
-                                    <th>Campo2</th>
-                                    <th>Campo3</th>
-                                    <th>Campo4</th>
-                                    <th>Campo5</th>
-                                    <th>Campo6</th>
-                                    <th>Campo7</th>
+                                    <th>Id</th>
+                                    <th>Fecha Lectura</th>
+                                    <th>Id libro</th>
+                                    <th>id usuario</th>
+                                    <th>Título libro</th>
+                                    <th>Fecha venta</th>
+                                    <th>Precio</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="item,iter : ${listado}">
                                     <td th:text="${item.id}"></td>
                                     <td th:text="${item.fechaLectura}"></td>
-                                    <td th:text="${item.fechaLectura}"></td>
-                                    <td th:text="${item.fechaLectura}"></td>
-                                    <td th:text="${item.fechaLectura}"></td>
-                                    <td th:text="${item.fechaLectura}"></td>
-                                    <td th:text="${item.fechaLectura}"></td>
+                                    <td th:text="${item.booksId}"></td>
+                                    <td th:text="${item.userId}"></td>
+                                    <td th:text="${item.booksTitle}"></td>
+                                    <td th:text="${item.fechaVenta}"></td>
+                                    <td th:text="${item.precio}"></td>
                                 </tr>
 
                                 </tbody>
