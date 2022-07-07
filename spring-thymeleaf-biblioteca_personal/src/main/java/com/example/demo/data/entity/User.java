@@ -1,6 +1,5 @@
 package com.example.demo.data.entity;
 
-import com.example.demo.config.CustomPasswordEncoderConfig;
 import com.example.demo.utils.PasswordHadling;
 
 import javax.persistence.*;

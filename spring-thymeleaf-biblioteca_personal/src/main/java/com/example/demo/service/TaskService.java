@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.data.entity.Task;
-import com.example.demo.data.entity.User;
 import com.example.demo.data.repository.TaskRepository;
 import com.example.demo.data.repository.UserRepository;
 import com.example.demo.dto.TaskDTO;

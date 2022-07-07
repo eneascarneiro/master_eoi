@@ -1,15 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.data.entity.BooksRead;
-import com.example.demo.data.entity.BooksSold;
 import com.example.demo.data.repository.BooksReadRepository;
 import com.example.demo.data.repository.BooksRepository;
-import com.example.demo.data.repository.BooksSoldRepository;
 import com.example.demo.data.repository.UserRepository;
 import com.example.demo.dto.BooksReadDTO;
-import com.example.demo.dto.BooksSoldDTO;
 import com.example.demo.service.mapper.BooksReadMapper;
-import com.example.demo.service.mapper.BooksSoldMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

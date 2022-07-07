@@ -4,8 +4,6 @@ import com.example.demo.data.entity.Role;
 import com.example.demo.data.repository.RoleRepository;
 import com.example.demo.data.repository.UserRepository;
 import com.example.demo.dto.RoleDTO;
-import com.example.demo.service.AbstractBusinessService;
-import com.example.demo.service.mapper.BooksMapper;
 import com.example.demo.service.mapper.RoleServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

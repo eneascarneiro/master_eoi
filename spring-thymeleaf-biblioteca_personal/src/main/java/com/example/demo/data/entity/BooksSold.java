@@ -3,7 +3,6 @@ package com.example.demo.data.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 @Entity
 public class BooksSold implements Serializable {

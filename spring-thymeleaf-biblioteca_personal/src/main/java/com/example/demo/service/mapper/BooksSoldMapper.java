@@ -2,7 +2,6 @@ package com.example.demo.service.mapper;
 
 
 import com.example.demo.data.entity.BooksSold;
-import com.example.demo.data.repository.BooksRepository;
 import com.example.demo.dto.BooksSoldDTO;
 import com.example.demo.utils.DateUtil;
 import org.springframework.stereotype.Service;

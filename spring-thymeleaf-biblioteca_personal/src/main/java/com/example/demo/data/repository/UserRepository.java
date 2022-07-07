@@ -1,6 +1,5 @@
 package com.example.demo.data.repository;
 
-import com.example.demo.data.entity.BooksSold;
 import com.example.demo.data.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

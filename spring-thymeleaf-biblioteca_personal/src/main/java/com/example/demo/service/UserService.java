@@ -1,12 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.data.entity.Books;
 import com.example.demo.data.entity.User;
-import com.example.demo.data.repository.BooksRepository;
 import com.example.demo.data.repository.UserRepository;
-import com.example.demo.dto.BooksDTO;
 import com.example.demo.dto.UserDTO;
-import com.example.demo.service.mapper.BooksMapper;
 import com.example.demo.service.mapper.UserServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
