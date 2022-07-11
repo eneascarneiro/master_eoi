@@ -15,7 +15,7 @@ public class MessageListenerGlobal {
     @EventListener
     public void EscucharSaludo(MessageEventSaludo event) {
 
-            logger.info("El mensaje es: " + event.getMessage() + ", viene de:" + event.getSource() +
+            logger.info("El mensaje es: " + event.getMessage().getMensaje() + ", viene de:" + event.getSource() +
                     " y ha llegado a la hora:" + event.getTimestamp());
 
     }

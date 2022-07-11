@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import com.example.demo.dto.MensajesDTO;
 import com.example.demo.event.MessageEvent;
 import com.example.demo.event.MessageEventSaludo;
 import org.slf4j.Logger;
@@ -23,9 +24,9 @@ public class PublicarMensaje {
         logger.info("Evento generado");
 
     }
-    public void  EnviarMensajeSaludo(String mensaje){
+    public void  EnviarMensajeSaludo(MensajesDTO mensajesDTO){
         logger.info("Inicio el envío de mensaje saludo por eventos");
-        MessageEventSaludo messageEventSaludo = new MessageEventSaludo(this,mensaje);
+        MessageEventSaludo messageEventSaludo = new MessageEventSaludo(this,mensajesDTO);
         publisher.publishEvent(messageEventSaludo);
         logger.info("Evento generado de saludo");
 

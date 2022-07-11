@@ -37,6 +37,12 @@ public abstract class AbstractBusinessService<E, ID, DTO, REPO extends JpaReposi
         return this.serviceMapper.toDto(savedEntity);
     }
 
+    public DTO save(DTO dto , Integer I) {
+        final E entity = this.serviceMapper.toEntity(dto);
+        final E savedEntity = this.repository.save(entity);
+        return this.serviceMapper.toDto(savedEntity);
+    }
+
     public void delete(ID id) {
         this.repository.deleteById(id);
     }

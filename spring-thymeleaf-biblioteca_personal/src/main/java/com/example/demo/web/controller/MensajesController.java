@@ -67,10 +67,8 @@ public class MensajesController extends AbstractController<MensajesDTO>  {
         mensaje += ":";
         mensaje += sdf1.format(timestamp);
         dto.setMensaje(mensaje);
-        //Grabar mensaje
-        this.service.save(dto);
         //Generar evento
-        publicarMensaje.EnviarMensajeSaludo(mensaje) ;
-        return "mensajes/list";
+        publicarMensaje.EnviarMensajeSaludo(dto) ;
+        return "redirect:/mensajes";
     }
 }

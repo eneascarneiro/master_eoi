@@ -38,6 +38,16 @@ public class MensajesService extends AbstractBusinessService<Mensajes, Integer, 
         return getServiceMapper().toDto(savedEntity);
     }
 
+    @Override
+    public MensajesDTO save(MensajesDTO dto, Integer usrid) {
+        final Mensajes entity = getServiceMapper().toEntity(dto);
+        dto.setUserId(usrid);
+        entity.setUser(this.userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new RuntimeException(String.format("The user %s does not exist", dto.getUserId()))));
+        final Mensajes savedEntity = this.getRepository().save(entity);
+        return getServiceMapper().toDto(savedEntity);
+    }
+
     //Metodo para el listado principal
     public Page<MensajesDTO> findByUserId(Integer userId, Pageable pageable) {
         return getRepository().findByUserId(userId, pageable).map(getServiceMapper()::toDto);

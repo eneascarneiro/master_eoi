@@ -9,6 +9,9 @@ public class MensajesDTO {
 
     private Integer userId;
 
+    private Integer userId_reciver;
+
+
     public Integer getId() {
         return id;
     }
