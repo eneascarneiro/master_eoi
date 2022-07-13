@@ -3,7 +3,7 @@ spring:
     serialization:
       indent-output: true
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/books
+    url: jdbc:mysql://host.docker.internal:3306/books
     username: root
     password: eneas2805
 
