@@ -1,0 +1,4 @@
+org\jboss\as\quickstarts\ejb\remote\stateless\RemoteCalculator.class
+org\jboss\as\quickstarts\ejb\remote\stateful\CounterBean.class
+org\jboss\as\quickstarts\ejb\remote\stateful\RemoteCounter.class
+org\jboss\as\quickstarts\ejb\remote\stateless\CalculatorBean.class

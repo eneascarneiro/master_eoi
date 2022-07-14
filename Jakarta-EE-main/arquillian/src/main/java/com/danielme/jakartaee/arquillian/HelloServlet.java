@@ -23,7 +23,7 @@ public class HelloServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter printWriter = response.getWriter();
         response.setContentType("text/plain;charset=UTF-8");
-        printWriter.print(message.get());
+        printWriter.print("mensaje de contacto ");
     }
 
 }
