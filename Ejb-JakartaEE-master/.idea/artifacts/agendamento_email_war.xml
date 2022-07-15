@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="agendamento-email:war">
+    <output-path>$PROJECT_DIR$/EjbExample/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>agendamento-email</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="agendamento-email-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="agendamento-email:war exploded" />
+    </root>
+  </artifact>
+</component>

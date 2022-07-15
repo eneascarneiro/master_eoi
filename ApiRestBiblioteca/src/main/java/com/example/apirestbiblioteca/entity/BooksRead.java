@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 @Entity
+
 @NamedQuery(name = "BooksRead.compras",
         query = "SELECT br.id,br.fechaLectura,  br.books.id as booksId , " +
                 " br.user.id as userId, br.books.booktitle as booksTitle , " +
