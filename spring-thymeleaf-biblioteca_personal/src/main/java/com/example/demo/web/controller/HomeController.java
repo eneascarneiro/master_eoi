@@ -16,9 +16,17 @@ public class HomeController extends AbstractController {
     public HomeController(MenuService menuService) {
         super(menuService);
     }
-    @GetMapping("/bienvenido")
-    public String homePageEmpty() {
-        return "bienvenido";
+    @GetMapping("/landing")
+    public String LandingPage(ModelMap model) {
+        /*final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("username", ((User) principal).getUserName());*/
+        return "landing";
+    }
+    @GetMapping("/wellcome")
+    public String WellcomePage(ModelMap model) {
+        /*final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("username", ((User) principal).getUserName());*/
+        return "wellcome";
     }
     @GetMapping({"/",""})
     public String homePage(ModelMap model) {
