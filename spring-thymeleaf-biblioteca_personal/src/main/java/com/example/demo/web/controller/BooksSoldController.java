@@ -113,6 +113,7 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
         final List<BooksDTO> all = this.serviceBooks.findAll();
         dto.setUserId(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         model.addAttribute("bookssold", dto)
+
                 .addAttribute("listaLibros",all);
         return "bookssolds/edit";
     }
@@ -123,6 +124,7 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
         System.out.println("creando el registro antes:" + dto.getBooksId() + ": usuario :" + dto.getUserId());
         dto.setUserId(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         System.out.println("creando el registro:" + dto.getBooksId() + ": usuario :" + dto.getUserId());
+
         return String.format("redirect:/bookssolds/%s", this.service.save(dto).getId());
     }
 

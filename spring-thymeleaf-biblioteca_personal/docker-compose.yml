@@ -9,13 +9,16 @@ services:
       - mysql_db
     links:
       - mysql_db:app_db
-  mysql_db:
-    image: "mysql:8.0"
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
-    ports:
-      - 3309:3306
     environment:
-      MYSQL_DATABASE: java_to_dev_app_db
-      MYSQL_USER: java_to_dev
-      MYSQL_PASSWORD: nE5kMc7JCGNqwDQM
-      MYSQL_ROOT_PASSWORD: nE5kMc7JCGNqwDQN
+      MYSQL_ROOT_PASSWORD: eneas2805
+      MYSQL_DATABASE: books
+      MYSQL_USER: user
+      MYSQL_PASSWORD: eneas2805
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql

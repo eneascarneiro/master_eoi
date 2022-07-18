@@ -1,16 +1,18 @@
 package com.example.demo.data.jpql;
 
+
+
 import com.example.demo.data.dao.GenericDAOImpl;
 import com.example.demo.data.entity.BooksRead;
 import com.example.demo.dto.Informe7CamposDTO;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-@Component
+@Configuration
 public class BookReadJpqlImplDAO extends GenericDAOImpl<BooksRead, Long> implements BooksReadJpqlDAO {
     private static final DateTimeFormatter DATE_FORMATER_1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
 

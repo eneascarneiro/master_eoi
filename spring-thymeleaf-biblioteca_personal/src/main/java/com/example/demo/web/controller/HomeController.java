@@ -16,11 +16,14 @@ public class HomeController extends AbstractController {
     public HomeController(MenuService menuService) {
         super(menuService);
     }
-
-    @GetMapping("/")
+    @GetMapping("/bienvenido")
+    public String homePageEmpty() {
+        return "bienvenido";
+    }
+    @GetMapping({"/",""})
     public String homePage(ModelMap model) {
-        final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("username", ((User) principal).getUserName());
+        /*final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("username", ((User) principal).getUserName());*/
         return "home";
     }
 }

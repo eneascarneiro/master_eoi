@@ -1,25 +1,26 @@
-spring:
-  jackson:
-    serialization:
-      indent-output: true
-  datasource:
-    url: jdbc:mysql://host.docker.internal:3306/books
-    username: root
-    password: eneas2805
+  spring:
+    jackson:
+      serialization:
+        indent-output: true
+    datasource:
+      url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/books
+      username: root
+      password: eneas2805
 
-  thymeleaf:
-    cache: false
-    mode: HTML
-    encoding: UTF-8
-    prefix: file:src/main/resources/templates/
-  resources:
-    static-locations: file:src/main/resources/static/
-    cache:
-      period: 0
-  jpa:
-    hibernate:
-      ddl-auto: update
-    defer-datasource-initialization: true
+    thymeleaf:
+      cache: false
+      mode: HTML
+      encoding: UTF-8
+      prefix: file:src/main/resources/templates/
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
+    jpa:
+      hibernate:
+        ddl-auto: update
+      defer-datasource-initialization: true
 
-server:
-  port: 8080
+  server:
+    port: 8080
+

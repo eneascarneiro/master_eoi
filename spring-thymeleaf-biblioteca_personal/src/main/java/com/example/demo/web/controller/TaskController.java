@@ -38,6 +38,7 @@ public class TaskController extends AbstractController<TaskDTO> {
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
             Model model) {
         final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
         final Page<TaskDTO> all = this.service.findAll(user.getId(), PageRequest.of(page.orElse(1) - 1, size.orElse(10)));
         model
                 .addAttribute("username", user.getUserName())
