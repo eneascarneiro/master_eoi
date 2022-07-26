@@ -83,7 +83,7 @@ class KnoteConfig implements WebMvcConfigurer {
 
 @ConfigurationProperties(prefix = "knote")
 class KnoteProperties {
-    @Value("${uploadDir:/tmp/uploads/}")
+    @Value("${uploadDir:/data/img/}")
     private String uploadDir;
 
     public String getUploadDir() {
@@ -148,7 +148,7 @@ class KNoteController {
                 file.getOriginalFilename().split("\\.")[1];
         file.transferTo(new File(properties.getUploadDir() + fileId));
         model.addAttribute("description",
-                description + " ![](/uploads/" + fileId + ")");
+                description + " ![](/data/img/" + fileId + ")");
     }
 
     private void saveNote(String description, Model model) {
