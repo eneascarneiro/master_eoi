@@ -34,11 +34,19 @@ public class BooksController extends AbstractController<BooksDTO>  {
     @GetMapping("/books")
     public String getAll(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
                          Model model) {
-        final User user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        Integer userConnected = 0;
+        User user  = new User();
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            //No hay usuario conectado
+            userConnected = 1;
+            user = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        }
+
         final Page<BooksDTO> all = this.service.findAll( PageRequest.of(page.orElse(1) - 1,
                             size.orElse(10)));
         model
                 .addAttribute("username", user.getUserName())
+                .addAttribute("conectado",userConnected)
                 .addAttribute("books", all)
                 .addAttribute(pageNumbersAttributeKey, getPageNumbers(all));
         return "books/list";

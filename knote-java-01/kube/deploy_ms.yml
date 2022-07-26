@@ -1,0 +1,24 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-note
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-note
+  template:
+    metadata:
+      labels:
+        app: api-note
+    spec:
+      containers:
+        - name: app
+          image: eneascarneiro/api-notes:1.0.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/dev
+          imagePullPolicy: Always

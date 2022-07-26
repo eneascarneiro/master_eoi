@@ -72,7 +72,7 @@ class KnoteConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/uploads/**")
+                .addResourceHandler("/data/img/**")
                 .addResourceLocations("file:" + properties.getUploadDir())
                 .setCachePeriod(3600)
                 .resourceChain(true)
