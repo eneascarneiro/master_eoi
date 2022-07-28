@@ -1,4 +1,7 @@
   spring:
+    profiles:
+      include:
+        - otro
     jackson:
       serialization:
         indent-output: true
@@ -24,3 +27,10 @@
   server:
     port: 8080
 
+  app:
+    properties:
+      classpath: "classpath"
+      argument: "1"
+      external: "2"
+      environment: "3"
+      cloud: "1111111"

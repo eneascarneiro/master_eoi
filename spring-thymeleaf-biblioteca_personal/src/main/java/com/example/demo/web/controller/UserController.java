@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +61,8 @@ public class UserController extends AbstractController<UserDTO>  {
     @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String edit(@PathVariable("id") Integer id, ModelMap model) {
         final List<RoleDTO> all_roles = this.roleService.findAll();
-        final List<RoleDTO> all_roles_activos = (List<RoleDTO>) this.service.findById(id).get().getRoles();
+        List<RoleDTO> all_roles_activos = new ArrayList<RoleDTO>();
+        all_roles_activos.addAll(this.service.findById(id).get().getRoles());
         model.addAttribute("user", this.service.findById(id).get());
         model.addAttribute("roles", all_roles);
         model.addAttribute("roles_activos", all_roles_activos);
@@ -81,6 +83,7 @@ public class UserController extends AbstractController<UserDTO>  {
     @PostMapping(value = { "/users/{id}/edit", "/users/create" })
     @PostAuthorize("hasRole('ROLE_ADMIN') ")
     public String save(UserDTO dto) {
+
         return String.format("redirect:/users/%s", this.service.save(dto).getId());
     }
 

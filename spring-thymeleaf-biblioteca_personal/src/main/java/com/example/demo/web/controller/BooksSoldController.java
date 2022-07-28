@@ -97,6 +97,9 @@ public class BooksSoldController extends AbstractController<BooksSoldDTO>  {
     @GetMapping("/bookssolds/{id}")
     @PostAuthorize("hasRole('ROLE_ADMIN') or #model[bookssold].userId == authentication.principal.id")
     public String detail(@PathVariable("id") Integer id, ModelMap model) {
+        //Buscar el elemento del catalogo
+
+        //Pasar el elemento al modelo
         model.addAttribute("bookssold", this.service.findById(id).get());
         return "bookssolds/detail";
     }
