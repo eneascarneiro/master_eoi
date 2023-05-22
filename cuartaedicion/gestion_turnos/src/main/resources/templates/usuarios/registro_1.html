@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de usuarios</title>
+</head>
+<body>
+    <div layout:fragment="cabecera">
+        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+    </div>
+    <div layout:fragment="contenido">
+
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-12 col-xl-11">
+                        <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                    <div th:class="#{estilo.pantalladatosderecha}">
+                                        <form class="mx-1 mx-md-4"  role="form" th:object="${datosUsuario} " method="post">
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="text" id="form3Example1c" class="form-control"  maxlength="30" th:field="${datosUsuario.nombreUsuario}"/>
+                                                    <label class="form-label" for="form3Example1c">Nombre usuario</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="email" id="form3Example3c" class="form-control"  maxlength="50" th:field="${datosUsuario.email}"/>
+                                                    <label class="form-label" for="form3Example3c">Email</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <input type="password" id="form3Example4c" class="form-control" maxlength="30" th:field="${datosUsuario.password}" />
+                                                    <label class="form-label" for="form3Example4c">Password</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <label class="form-label">Seleccionar uno varios roles:</label>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                               <div iclass="form-check " th:each="role_item_1 : ${listaRoles}">
+                                                   <input type="checkbox" name="checkedRole" class="custom-control-input"
+                                                          th:id="'customCheck' + ${role_item_1.id}" th:value="${role_item_1.id}" th:checked="${checkedRoles.contains(role_item_1.id)}">
+                                                   <label class="custom-control-label"
+                                                          th:for="'customCheck' + ${role_item_1.id}" th:text="${role_item_1.roleName}">custom check</label>
+                                               </div>
+                                            </div>
+                                            <div class="form-check d-flex justify-content-center mb-5">
+                                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                                <label class="form-check-label" for="form2Example3">
+                                                    I agree all statements in <a href="#!">Terms of service</a>
+                                                </label>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <button type="submit"  class="btn btn-primary btn-lg">Registrar usuario</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                    <div th:class="#{estilo.pantalladatosizquierda}">
+
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                             class="img-fluid" alt="Sample image">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+</body>
+</html>

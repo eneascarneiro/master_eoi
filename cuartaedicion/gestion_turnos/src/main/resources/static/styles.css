@@ -1,0 +1,42 @@
+.tdstyle {
+	width: 100px;
+	text-align: right;
+}
+
+.thstyle {
+	width: 100px;
+	text-align: right;
+}
+
+li {
+	color: red;
+	margin-bottom: 20px;
+}
+
+caption {
+	font-weight: bold;
+	color: white;
+	background-color: maroon;
+}
+
+.holiday {
+	color: #f42300;
+	width: 100px;
+	text-align: right;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 33.33%;
+    padding-left: 40px;
+    padding-top: 40px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

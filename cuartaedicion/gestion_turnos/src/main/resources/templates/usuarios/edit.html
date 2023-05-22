@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de  usuarios</title>
+</head>
+<body>
+    <div layout:fragment="cabecera">
+        <h1>Editar usuario</h1>
+    </div>
+    <div layout:fragment="contenido">
+        <div>
+            <h2>Editar  usuarios</h2>
+            <div>
+                <form role="form" th:object="${datosUsuario}" method="post">
+                    <input th:type="hidden" th:field="${datosUsuario.id}">
+                    <label for="nombreusuario">Usuario</label>
+                    <input type="text" id="nombreusuario" maxlength="30" th:field="${datosUsuario.nombreUsuario}" >
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" maxlength="50" th:field="${datosUsuario.email}">
+
+                    <div>
+                        <button type="submit" title="Guardar">Guardar usuario </button>
+                        <a th:href="@{/}" role="button" title="Volver a principal" th:text="Cancelar">
+
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

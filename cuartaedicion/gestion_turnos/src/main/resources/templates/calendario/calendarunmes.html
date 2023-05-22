@@ -1,0 +1,428 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sd="http://www.w3.org/1999/xhtml"
+	  layout:decorate="~{/layout/layout_cal}">
+<head>
+	<meta charset="UTF-8">
+	<title>Calendario</title>
+</head>
+
+<body>
+	<div layout:fragment="cabecera">
+		<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Calendario por mes y año</p>
+	</div>
+	<div layout:fragment="contenido">
+	<hr>
+		<h1>Calendar Generator</h1>
+		<hr>
+		<br>
+		<form method="post" th:action="@{/calendario/Calendarmes}">
+			<table class="center">
+				<tr>
+					<td>Enter Year: <input type="text" name="year" id="year"
+										   pattern="^\d{4}$" placeholder="yyyy">
+						Enter Month: <input type="text" name="month" id="month"
+										   pattern="^\d{2}$" placeholder="mm">
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><input type="submit" name="submit" value="Generate">
+					</td>
+				</tr>
+			</table>
+		</form>
+
+		<hr>
+		<h2>
+			Calendar for <span th:text="${year}"></span>
+			<span th:text="${month}"></span>
+		</h2>
+		<hr>
+		<p>Número de eventos</p>
+		<div  th:if="${events!=null }">
+			<label th:text="${events.size()}"/>
+		</div>
+		<div class="row">
+			<div class="col-md-3" th:if="${JAN !=null }">
+				<table class="center">
+					<caption>January</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${JAN}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+											<label  th:text="${elemento.especializacion} ">
+											</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${FEB !=null }">
+				<table>
+					<caption>February</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${FEB}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${MAR !=null }">
+				<table>
+					<caption>March</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${MAR}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${APR !=null }">
+				<table>
+					<caption>April</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${APR}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3" th:if="${MAY !=null }">
+				<table>
+					<caption>May</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${MAY}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${JUN !=null }">
+				<table>
+					<caption>June</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${JUN}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${JUL !=null }">
+				<table>
+					<caption>July</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${JUL}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${AUG !=null }">
+				<table>
+					<caption>August</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${AUG}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3" th:if="${SEP !=null }">
+				<table>
+					<caption>September</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${SEP}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${OCT !=null }">
+				<table>
+					<caption>October</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${OCT}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${NOV !=null }">
+				<table>
+					<caption>November</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${NOV}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-3" th:if="${DEC !=null }">
+				<table>
+					<caption>December</caption>
+					<tr>
+						<th class="thstyle">Sun</th>
+						<th class="thstyle">Mon</th>
+						<th class="thstyle">Tue</th>
+						<th class="thstyle">Wed</th>
+						<th class="thstyle">Thu</th>
+						<th class="thstyle">Fri</th>
+						<th class="thstyle">Sat</th>
+					</tr>
+					<tr th:each="row: ${DEC}">
+						<th:block th:each="column: ${row}">
+							<td class="tdstyle" >
+								<th:block   th:if="${events!=null and events.size() > 0  }">
+									<label  th:text="${column?.day}"/>
+									<th:block th:each="elemento,rowStat : ${events.?[diames == __${column?.day}__]}" >
+										<label  th:text="${elemento.especializacion} ">
+										</label>
+									</th:block>
+
+								</th:block>
+								<th:block  th:if="${events==null  or events.size() == 0}">
+									<label  th:text="${column?.day}"/>
+								</th:block>
+							</td>
+						</th:block>
+					</tr>
+				</table>
+			</div>
+		</div>
+		</div>
+		<hr>
+	</div>
+</body>
+</html>

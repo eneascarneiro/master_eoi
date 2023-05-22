@@ -1,0 +1,6 @@
+<a th:fragment="paging(pageNum,label)" class="page-link"
+  th:href="@{'/usuarios?' + ${keyword!=null && keyword!=''? 'keyword=' + keyword + '&' : ''}
+                           + 'page=' + ${pageNum} + '&size=' + ${pageSize}
+                           + ${sortField!=null ? '&sort=' + sortField + ',' + sortDirection : ''}}">
+  [[${label}]]
+</a>

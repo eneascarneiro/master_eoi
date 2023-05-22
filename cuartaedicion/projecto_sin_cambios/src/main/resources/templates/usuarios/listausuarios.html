@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de usuarios</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Estas en la lista de clientes</h1>
+</div>
+<div layout:fragment="contenido">
+    <form action="#" th:action="@{/}" method="post">
+        <div class="table-responsive">
+        <!-- Opcion 1 : tabla con contenido ( recomandable en caso de listas-->
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>&nbsp</th>
+                    <th>&nbsp</th>
+                </tr>
+                <tr th:each="elemento , posicion : ${listaclientes}">
+
+                    <td>
+                        <!-- meter un link para ver  con texto "ver"-->
+                        <a th:href="@{'/clientes/'+ ${elemento.id}}">Detalles</a>
+                    </td>
+                    <td>
+                        <!-- meter un boton para borrar  con un boton-->
+                        <button type="submit" value="Eliminar" th:formaction="'/usuarios/'+ ${elemento.id} +'/delete'">Eliminar</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de usuarios</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Estas en la lista de usuarios</h1>
+</div>
+<div layout:fragment="contenido">
+    <div class="box-body">
+        Show <span sd:page-size-selector="javascript"></span> entries
+
+        <form action="#" th:action="@{/}" method="post">
+            <div class="table-responsive">
+            <!-- Opcion 1 : tabla con contenido ( recomandable en caso de listas-->
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>email</th>
+                        <th>usario</th>
+                        <th>Nombre con email</th>
+                        <th  sec:authorize="hasRole('ADMIN')" >Habilitar S/N</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
+                    </tr>
+                    <tr th:each="elemento , posicion : ${listausuarios}">
+                        <td th:text="${elemento.email}"></td>
+                        <td th:text="${elemento.nombreUsuario}"></td>
+                        <td th:text="${elemento.nombreEmail}"></td>
+                        <td  sec:authorize="hasRole('ADMIN')" >
+                            <button type="submit" value="Habilitar" th:formaction="'/usuarios/'+ ${elemento.id} +'/habilitar'">Habilitar</button>
+                        </td>
+                        <td>
+                            <!-- meter un link para ver  con texto "ver"-->
+                            <a th:href="@{'/usuarios/'+ ${elemento.id}}">Detalles</a>
+                        </td>
+                        <td>
+                            <!-- meter un boton para borrar  con un boton-->
+                            <button type="submit" value="Eliminar" th:formaction="'/usuarios/'+ ${elemento.id} +'/delete'">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!--Mostramos una ultima fila con inormación cuando no hay registros -->
+                    <tr th:if="${listausuarios ==null or  listausuarios.empty}">
+                        <td colspan="13" class="text-center">No hay usuarios</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <!-- preparamos el div para poner los numeros de pagina-->
+    <div  th:if="${listausuarios!=null and !listausuarios.empty}" >
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <!--  si hay menos del numero minimo de registos no muestro la barra-->
+                    <div  th:if="${listausuarios.totalPages > 0}" class="pagination"
+                       th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==listausuarios.number + 1} ? active">
+                            <a href="#" th:href="@{/usuarios(size=${listausuarios.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

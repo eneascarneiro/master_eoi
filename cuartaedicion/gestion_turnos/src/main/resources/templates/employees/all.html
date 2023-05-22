@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  lang="pt"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout/layout}"
+>
+  <body>
+  <div layout:fragment="cabecera">
+    <h1>Editar empleado</h1>
+  </div>
+    <div layout:fragment="contenido">
+      <a th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">
+        Añadir empleados
+      </a>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="employee : ${employees}">
+            <td class="fs-6" th:text="${employee.name}"></td>
+            <td class="fs-6" th:text="${employee.occupation}"></td>
+            <td class="fs-6" th:text="${employee.email}"></td>
+            <td class="fs-6" th:text="${employee.phone}"></td>
+            <td>
+              <a
+                th:href="@{/employees/details/{id}(id=${employee.id})}"
+                class="btn btn-success btn-sm"
+                >Visualizar</a
+              >
+              <a
+                th:href="@{/employees/edit/{id}(id=${employee.id})}"
+                class="btn btn-primary btn-sm"
+                >Actualizar</a
+              >
+              <a
+                th:href="@{/employees/delete/{id}(id=${employee.id})}"
+                class="btn btn-danger btn-sm"
+                >Excluir</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

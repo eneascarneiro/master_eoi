@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de  clientes</title>
+</head>
+<body>
+    <div layout:fragment="cabecera">
+        <h1>Editar cliente</h1>
+    </div>
+    <div layout:fragment="contenido">
+        <div>
+            <div>
+                <form role="form" th:object="${datos}" method="post">
+                    <div class="text-center">
+                        <input th:type="hidden" th:field="${datos.id}">
+                        <label for="nombreCliente">Nombre cliente</label>
+                        <input type="text" id="nombreCliente" maxlength="50" th:field="${datos.nombreCliente}" >
+                        <label for="telefono">telefono</label>
+                        <input type="text" id="telefono" maxlength="15" th:field="${datos.telefono}">
+                        <label for="nombreContacto">nombreContacto</label>
+                        <input type="text" id="nombreContacto" th:field="${datos.nombreContacto}" >
+                    </div>
+                    <div class="text-center">
+                        <label for="apellidoContacto">apellidoContacto</label>
+                        <input type="text" id="apellidoContacto" th:field="${datos.apellidoContacto}" >
+                        <label for="fax">fax</label>
+                        <input type="text" id="fax" th:field="${datos.fax}" >
+                        <label for="lineaDireccion1">lineaDireccion1</label>
+                        <input type="text" id="lineaDireccion1" th:field="${datos.lineaDireccion1}" >
+                        <label for="lineaDireccion2">lineaDireccion2</label>
+                        <input type="text" id="lineaDireccion2" th:field="${datos.lineaDireccion2}" >
+                    </div>
+                    <div class="text-center">
+                        <label for="ciudad">ciudad</label>
+                        <input type="text" id="ciudad" th:field="${datos.ciudad}" >
+                        <label for="region">region</label>
+                        <input type="text" id="region" th:field="${datos.region}" >
+                        <label for="pais">pais</label>
+                        <input type="text" id="pais" th:field="${datos.pais}" >
+                        <label for="codigoPostal">codigoPostal</label>
+                        <input type="text" id="codigoPostal" th:field="${datos.codigoPostal}" >
+                    </div>
+                    <div class="text-center">
+                        <label for="limiteCredito">limiteCredito</label>
+                        <input type="text" id="limiteCredito" step="any" th:field="${datos.limiteCredito}" >
+                        <label for="limiteCreditoMin">limiteCreditoMin</label>
+                        <input type="text" id="limiteCreditoMin" step="any" th:field="${datos.limiteCreditoMin}" >
+                        <label for="limiteCreditoMax">limiteCreditoMax</label>
+                        <input type="text" id="limiteCreditoMax"  step="any" th:field="${datos.limiteCreditoMax}" >
+                    </div>
+
+
+                    <!-- ¿Como seleccionar elementos de una lista con thymeleaf-->
+                    <div th:if="${listaempleados!=null and !listaempleados.empty}"  class="form-group col-md-12">
+                        <label for="listaempleados" th:text="#{Empleados.listaedit}"></label>
+                        <select th:field="${datos.empleadoId}" class="form-control"  id="listaempleados">
+                            <option value="0">Seleciona uno</option>
+                            <option  th:each="elemento : ${listaempleados}" th:value="${elemento.id}" th:text="${elemento.nombre}" ></option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" title="Guardar">Guardar usuario </button>
+                        <a th:href="@{/}" role="button" title="Volver a principal" th:text="Cancelar">
+
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

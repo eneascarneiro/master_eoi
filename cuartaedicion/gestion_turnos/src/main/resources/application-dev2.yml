@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/fitbum
+    username: root
+    password: pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+
+    properties:
+      hibernate:
+        format-sql: true
+url:
+  address: /address
+  customer: /customer
+config:
+  security:
+    secretKey: 655368566B5970337336763979244226452948404D635166546A576E5A713474
+
+logging:
+
+  level:
+
+    org:
+
+      springframework: INFO
+
+      apache: ERROR
+
+      mongodb: INFO
+
+      hibernate:
+
+        Version: ERROR
+
+        stat: ERROR
+
+        SQL: DEBUG
+
+        cache: ERROR
+
+        tool: ERROR
+
+    com:
+
+      eoi: INFO
+
+      zaxxer: INFO
+
+    root: INFO
