@@ -31,6 +31,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "empleado_id", referencedColumnName = "id")
     private Empleado empleado;
 
+    @OneToMany(mappedBy = "usuarioincid" )
+    private Set<Incidencias> incidencias;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
     @Basic(optional = false)

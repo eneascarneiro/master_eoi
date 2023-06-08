@@ -54,6 +54,8 @@ public class Empleado implements Serializable {
   Oficina oficina;
 
 
+
+
   @OneToMany(mappedBy = "empleadoreparacion" )
   private Set<Reparaciones> reparaciones;
 }

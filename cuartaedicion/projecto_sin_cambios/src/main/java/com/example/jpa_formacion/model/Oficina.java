@@ -29,6 +29,8 @@ public class Oficina {
     @OneToMany(mappedBy = "oficina")
     List<Empleado> empleados;
 
+
+
     public Oficina() {
 
     }
