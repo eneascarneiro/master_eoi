@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edicion derecha</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edicion dercha</p>
+</div>
+<div layout:fragment="contenido">
+
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                <form class="mx-1 mx-md-4"  role="form" th:object="${datos} " method="post">
+                                    <input th:type="hidden" th:field="${datos.id}">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="descripcion" class="form-control"  maxlength="30" th:field="${datos.descripcion}"/>
+                                            <label class="form-label" for="descripcion">Dercripcion</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label for="etiqueta1"  class="form-label mt-2 mb-1">Datos tabla izq</label>
+                                        <select th:field="*{tblizq}" class="form-control" multiple="multiple"  id="etiqueta1">
+                                            <option th:each="etiq1: ${listaizq}"
+                                                    th:value="${etiq1.id}"
+                                                    th:selected="${tblizq}"
+                                                    th:text="${etiq1.descripcion}">
+                                            </option>
+                                        </select>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit"  class="btn btn-primary btn-lg">Registrar tabla derecha</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

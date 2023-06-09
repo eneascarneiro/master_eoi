@@ -28,7 +28,7 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
     }
 
 
-    @GetMapping("/mnembed/list")
+    @GetMapping("/mnembedizq/list")
     public String listadatos(@RequestParam("page") Optional<Integer> page,
                                 @RequestParam("size") Optional<Integer> size,
                                     ModelMap interfazConPantalla){
@@ -47,13 +47,13 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
         System.out.println("numero de registros:" + entsLPage.stream().count());
         interfazConPantalla.addAttribute(pageNumbersAttributeKey,dameNumPaginas(entsLPage));
         interfazConPantalla.addAttribute("listaDtos", entsLPage);
-        return "mnembed/listapagina";
+        return "mnembedizq/listapagina";
     }
 
-    @GetMapping("/mnembed/{id}")
+    @GetMapping("/mnembedizq/{id}")
     public ModelAndView  vistaDatos(@PathVariable("id") Long id){
         //Defino la pagina a pintar
-        ModelAndView modelAndView = new ModelAndView("mnembed/edit");
+        ModelAndView modelAndView = new ModelAndView("mnembedizq/edit");
         //Defino pagina no hay datos
         ModelAndView modelAndViewNoencontrado = new ModelAndView("mnembed/detallesnoencontrado");
 
@@ -72,7 +72,7 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
             return modelAndViewNoencontrado;
         }
     }
-    @PostMapping("/mnembed/{id}")
+    @PostMapping("/mnembedizq/{id}")
     public String guardarEdicionDatosEnt(@PathVariable("id") Long id, TablaIzqEmbeddable ent) throws Exception {
         //Con el id tengo que buscar el registro a nivel de entidad
         Optional<TablaIzqEmbeddable> entcrontrol = this.service.encuentraPorId(id);
@@ -84,16 +84,16 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
             etiquetaEmbeddableGuardar.setDescripcion(ent.getDescripcion());
             //Obtenemos la password del sercio
             this.service.guardar(etiquetaEmbeddableGuardar);
-            return String.format("redirect:/mnembed/%s", id);
+            return String.format("redirect:/mnembedizq/%s", id);
         } else {
             //Mostrar página usuario no existe
-            return "mnembed/detallesnoencontrado";
+            return "mnembedizq/detallesnoencontrado";
         }
     }
 
     //El que genera la pantalla para pedir los datos de tipo GetMapping
     //Cuando pasamos informacion a la pantalla hay que usar ModelMap
-    @GetMapping("/mnembed/registro")
+    @GetMapping("/mnembedizq/registro")
     public String vistaRegistro(ModelMap interfazConPantalla)
 
     {
@@ -101,19 +101,19 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
         final TablaIzqEmbeddable ent = new TablaIzqEmbeddable();
         //Mediante "addAttribute" comparto con la pantalla
         interfazConPantalla.addAttribute("datos", ent);
-        return "mnembed/registro";
+        return "mnembedizq/registro";
     }
     //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
-    @PostMapping("/mnembed/registro")
+    @PostMapping("/mnembedizq/registro")
     public String guardarEtiqueta( TablaIzqEmbeddable ent) throws Exception {
         //LLamo al método del servicioi para guardar los datos
         TablaIzqEmbeddable entguardar =  this.service.guardar(ent);
         Long id = entguardar.getId();
-        return String.format("redirect:/mnembed/%s", id);
+        return String.format("redirect:/mnembedizq/%s", id);
     }
 
 
-    @PostMapping("/mnembed/{id}/delete")
+    @PostMapping("/mnembedizq/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Long id){
         //Con el id tengo que buscar el registro a nivel de entidad
         Optional<TablaIzqEmbeddable> ent = this.service.encuentraPorId(id);
@@ -121,10 +121,10 @@ public class TablaIzqEmbeddableController extends AbstractController<TablaIzqEmb
         if (ent.isPresent()){
             this.service.eliminarPorId(id);
             //Mostrar listado de usuarios
-            return "redirect:/mnembed";
+            return "redirect:/mnembedizq";
         } else{
             //Mostrar página usuario no existe
-            return "etiquetas/embed/detallesnoencontrado";
+            return "mnembedizq/detallesnoencontrado";
         }
     }
 

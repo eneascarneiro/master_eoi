@@ -20,14 +20,14 @@ public class TablaIzqTablaDerEmbeddable {
 
     //Cruce con etiqueta
     @ManyToOne
-    @MapsId("etiquetaEmbedId")
-    @JoinColumn(name = "tablaizq_embed_id")
+    @MapsId("tablaizqId")
+    @JoinColumn(name = "tablaizqId")
     TablaIzqEmbeddable reltablaizqEmbeddable;
 
     //Cruce con Galeria
     @ManyToOne
-    @MapsId("galeriaEmbedId")
-    @JoinColumn(name = "tablader_embed_id")
+    @MapsId("tabladerId")
+    @JoinColumn(name = "tabladerId")
     TablaDerEmbeddable reltabladerEmbeddable;
 
     //Aqui las campos adicionales
