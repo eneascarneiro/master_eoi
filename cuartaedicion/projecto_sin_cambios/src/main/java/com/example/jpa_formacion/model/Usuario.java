@@ -27,6 +27,10 @@ public class Usuario implements Serializable {
     @Column (name ="password",length = 250)
     private String password;
 
+    @Column (name ="token",length = 250)
+    private String token;
+
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "empleado_id", referencedColumnName = "id")
     private Empleado empleado;

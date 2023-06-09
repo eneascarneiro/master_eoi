@@ -222,6 +222,40 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         model.addAttribute("errorMessage", errorMessage);
         return "usuarios/login";
     }
+    // Reset password
+    @GetMapping("/usuarios/resetpass/{usrname}/{token}")
+    public String cambiopass(@PathVariable("usrname") String username, @PathVariable("token") String token, ModelMap intefrazConPantalla) {
+        Optional<Usuario> usuario = service.getRepo().findByEmailAndTokenAndActiveTrue(username,token );
+        System.out.println(username + ":" + token );
+        UsuarioCambioPsw usuarioCambioPsw = new UsuarioCambioPsw();
 
+        if (usuario.isPresent()){
+            usuarioCambioPsw.setUsuario(usuario.get().getEmail());
+            usuarioCambioPsw.setPassword("******************");
+            usuarioCambioPsw.setNewpassword("******************");
+            intefrazConPantalla.addAttribute("datos", usuarioCambioPsw);
+            return "usuarios/resetearpasswordlogin";
+        }else {
+            //Mostrar página usuario no existe
+            return "usuarios/detallesusuarionoencontrado";
+        }
+    }
+    @PostMapping("/usuarios/resetpass")
+    public String saveListaUsuariuos(@ModelAttribute  UsuarioCambioPsw  dto) throws Exception {
+        //Si las password no coinciden a la pag de error
+        if (dto.getPassword().equals(dto.getNewpassword())){
+            //Buscamnos el usuario
+            Usuario usuario = service.getRepo().findByEmailAndActiveTrue(dto.getUsuario());
+            //Actualizo la password despues de codificarla
+            usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
+            //Guardo el usuario
+            Usuario usuarioguarado = service.guardarEntidadEntidad(usuario);
+            return "redirect:/usuarios/login";
+        }else {
+            //Mostrar página usuario no existe
+            return "usuarios/detallesusuarionoencontrado";
+        }
+
+    }
 
 }

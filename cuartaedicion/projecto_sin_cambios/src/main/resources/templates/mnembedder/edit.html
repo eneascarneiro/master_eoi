@@ -42,15 +42,43 @@
                                     </div>
 
 
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="descripcioni" class="form-control"  maxlength="30" th:field="${primerelmIzq.descripcion}"/>
+                                            <label class="form-label" for="descripcioni">Dercripcion primer elemento izq</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" >Primer imagen</label>
+                                            <label th:text="${primeraimg}"></label>
 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <table class="table table-bordered table-hover">
+                                            <tr>
+                                                <th>nombre archivo</th>
+                                            </tr>
+                                            <tr th:each="elemento , posicion : ${listaimg}">
 
-
+                                                <td>
+                                                    <!-- meter un link para ver  con texto "ver"-->
+                                                    <label th:text="${elemento}"></label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="submit"  class="btn btn-primary btn-lg">Registrar tabla derecha</button>
+                                        <button type="submit"  class="btn btn-primary btn-lg" onclick="initMap()" >Mostrar mapa</button>
                                     </div>
                                 </form>
                             </div>
+                            <div id="map"></div>
 
                         </div>
                     </div>
@@ -61,7 +89,10 @@
 
 </div>
 
-
+<!-- Loads maps library (with places library) and then calls initMap() -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyBEHU7bdMD9UpctHNDiUPb5J76wEoq0UOo">
+</script>
 
 </body>
 </html>

@@ -13,9 +13,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class TablaDerEmbeddableController extends AbstractController<TablaDerEmbeddable> {
@@ -33,7 +36,12 @@ public class TablaDerEmbeddableController extends AbstractController<TablaDerEmb
         this.tablaIzqTablaDerEmbeddableService = tablaIzqTablaDerEmbeddableService;
     }
 
-
+    public Set<String> listFilesUsingJavaIO(String dir) {
+        return Stream.of(new File(dir).listFiles())
+                .filter(file -> !file.isDirectory())
+                .map(File::getName)
+                .collect(Collectors.toSet());
+    }
     @GetMapping("/mnembedder/list")
     public String listadatos(@RequestParam("page") Optional<Integer> page,
                              @RequestParam("size") Optional<Integer> size,
@@ -77,9 +85,17 @@ public class TablaDerEmbeddableController extends AbstractController<TablaDerEmb
             for(TablaIzqTablaDerEmbeddable item: ent_opt.get().getTablaIzqTablaDerEmbeddables()) {
                 dto.getTblizq().add(item.getReltablaizqEmbeddable());
             }
+            TablaIzqEmbeddable primerelemnto = dto.getTblizq().iterator().next();
+            Set<String> listadirectorio = listFilesUsingJavaIO("src/main/resources/static/imagenesempl");
+
+            String primeraimagen = listadirectorio.iterator().next().toString();
+            System.out.println("primeraimagen:" + primeraimagen );
 
             List<TablaIzqEmbeddable> tablaIzqEmbeddables = this.izqservice.buscarEntidades();
             interfazConPantalla.addAttribute("datos",dto);
+            interfazConPantalla.addAttribute("listaimg",listadirectorio);
+            interfazConPantalla.addAttribute("primeraimg",primeraimagen);
+            interfazConPantalla.addAttribute("primerelmIzq",primerelemnto);
             interfazConPantalla.addAttribute("listaizq",tablaIzqEmbeddables);
             return "mnembedder/edit";
         } else{

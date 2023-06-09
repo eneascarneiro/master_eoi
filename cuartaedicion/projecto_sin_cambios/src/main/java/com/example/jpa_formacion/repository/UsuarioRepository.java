@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 
@@ -14,6 +15,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 
     Usuario findUsuarioByNombreUsuarioIs(String name);
     Usuario findByEmailAndActiveTrue(String name);
+
+    Optional<Usuario> findByEmailAndTokenAndActiveTrue(String name, String token);
 
     Usuario findByNombreUsuarioAndActiveTrue(String name);
 
