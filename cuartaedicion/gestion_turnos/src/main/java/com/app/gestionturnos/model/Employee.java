@@ -21,8 +21,6 @@ public class Employee {
     @Column
     private String name;
 
-    @Column
-    private String bi;
 
     @Column
     private String address;
@@ -101,14 +99,6 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBi() {
-        return this.bi;
-    }
-
-    public void setBi(String bi) {
-        this.bi = bi;
     }
 
     public String getAddress() {

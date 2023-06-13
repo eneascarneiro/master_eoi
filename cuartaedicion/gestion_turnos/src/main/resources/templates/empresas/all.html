@@ -7,44 +7,51 @@
   layout:decorate="~{layout/layout}"
 >
   <body>
-    <div layout:fragment="content">
+  <div layout:fragment="cabecera">
+    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Listado de empresas</p>
+  </div>
+    <div layout:fragment="contenido">
       <h1>Empresas</h1>
 
-      <a th:href="@{/empresas/new}" class="btn btn-primary btn-sm mb-3">
+      <a th:href="@{/empresas/registro}" class="btn btn-primary btn-sm mb-3">
         Añadir empresa
       </a>
 
       <table class="table">
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Ocupação/Cargo</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Acções</th>
+            <th>id</th>
+            <th>ciudad</th>
+            <th>pais</th>
+            <th>region</th>
+            <th>codigo_postal</th>
+            <th>telefono</th>
+            <th>linea_direccion1</th>
+            <th>linea_direccion2</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="employee : ${employees}">
-            <td class="fs-6" th:text="${employee.name}"></td>
-            <td class="fs-6" th:text="${employee.occupation}"></td>
-            <td class="fs-6" th:text="${employee.email}"></td>
-            <td class="fs-6" th:text="${employee.phone}"></td>
+          <tr th:each="empresa : ${lista}">
+            <td class="fs-6" th:text="${empresa.id}"></td>
+            <td class="fs-6" th:text="${empresa.ciudad}"></td>
+            <td class="fs-6" th:text="${empresa.pais}"></td>
+            <td class="fs-6" th:text="${empresa.region}"></td>
+            <td class="fs-6" th:text="${empresa.codigo_postal}"></td>
+            <td class="fs-6" th:text="${empresa.telefono}"></td>
+            <td class="fs-6" th:text="${empresa.linea_direccion1}"></td>
+            <td class="fs-6" th:text="${empresa.linea_direccion2}"></td>
             <td>
               <a
-                th:href="@{/employees/details/{id}(id=${employee.id})}"
+                th:href="@{/empresas/details/{id}(id=${empresa.id})}"
                 class="btn btn-success btn-sm"
                 >Visualizar</a
               >
               <a
-                th:href="@{/employees/edit/{id}(id=${employee.id})}"
+                th:href="@{/employees/borrar/{id}(id=${empresa.id})}"
                 class="btn btn-primary btn-sm"
-                >Actualizar</a
-              >
-              <a
-                th:href="@{/employees/delete/{id}(id=${employee.id})}"
-                class="btn btn-danger btn-sm"
-                >Excluir</a
+                >Eliminar</a
               >
             </td>
           </tr>

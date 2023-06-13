@@ -1,6 +1,7 @@
 package com.app.gestionturnos.web.controller;
 
 import com.app.gestionturnos.dto.LoginDto;
+import com.app.gestionturnos.dto.MenuDTO;
 import com.app.gestionturnos.dto.UsuarioDto;
 import com.app.gestionturnos.dto.UsuariosListaDto;
 import com.app.gestionturnos.model.Usuario;
@@ -46,7 +47,6 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
 
     @GetMapping("/")
     public String vistaHome( ModelMap interfazConPantalla){
-
         String  userName = "no informado";
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
         //Comprobamos si hay usuario logeado
@@ -56,7 +56,10 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         else {
             userName = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         }
+        System.out.println("Menu 1 Usuario:" +userName  );
+        List<MenuDTO> menuDTOList = this.menuService.getMenuForEmail(userName);
         interfazConPantalla.addAttribute("menuList", this.menuService.getMenuForEmail(userName));
+
         return "index";
     }
     @GetMapping("/usuariosordbusq")
@@ -74,7 +77,6 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         //Obetenemos el objeto Page del servicio
         String sortField = sort[0];
         String sortDirection = sort[1];
-
         Sort.Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort.Order order = new Sort.Order(direction, sortField);
 

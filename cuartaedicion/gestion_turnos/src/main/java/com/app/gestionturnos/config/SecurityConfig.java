@@ -58,10 +58,11 @@ https://www.baeldung.com/spring-security-csrf
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/fonts/**").permitAll()
                 //Aqui se meten las direcciones del controlador que no requieren logi.
-                .requestMatchers("/","/usuarios/registro","/usuarios/cambiopass","/calendario/calmes" ).permitAll()
+                //.requestMatchers("/","/usuarios/registro","/usuarios/cambiopass","/calendario/calmes" ).hasAuthority("ROLE_JUGADOR")
                 //Aqui se meten las direcciones del controlador que  requieren ser admin.
                 .requestMatchers("/galeria/{id}","/galeria/embed/{id}").hasAuthority("ROLE_ADMIN")
                 .requestMatchers( HttpMethod.POST,"/**").permitAll()
+                .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
@@ -83,11 +84,11 @@ https://www.baeldung.com/spring-security-csrf
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(encoder);
         return authenticationProvider;
-    }
-    @Bean
+    } @Bean
     static GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults("ROLE_");
     }
+
 
 
 }

@@ -37,7 +37,8 @@ public class EmailService {
 		//provide Mailtrap's username
 		final String username = "api";
 		//provide Mailtrap's password
-		final String password = "b411b9132ea86b8cb2cbada15bfcbfd1";
+		//final String password = "b411b9132ea86b8cb2cbada15bfcbfd1";
+		final String password = "dd05f45be13af56332d53dec9b2ab3d2";
 		//provide Mailtrap's host address
 		String host = "live.smtp.mailtrap.io";
 		//configure Mailtrap's SMTP server details

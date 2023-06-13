@@ -1,0 +1,16 @@
+<th scope="col" th:fragment="sorting(field, label)">
+  <a th:href="@{'/empresas/listaempresasporbusq?'
+                            + ${keywordciudad!=null && keywordciudad!=''? 'keywordciudad=' + keywordciudad + '&' : ''}
+                            + ${keywordpais!=null && keywordpais!=''? 'keywordpais=' + keywordpais + '&' : ''}
+                            + ${keywordregion!=null && keywordregion!=''? 'keywordregion=' + keywordregion + '&' : ''}
+                            + ${keywordcodigopostal!=null && keywordcodigopostal!=''? 'keywordcodigopostal=' + keywordcodigopostal + '&' : ''}
+                            + ${keywordtelefono!=null && keywordtelefono!=''? 'keywordtelefono=' + keywordtelefono + '&' : ''}
+                            + ${keyworddireccion1!=null && keyworddireccion1!=''? 'keyworddireccion1=' + keyworddireccion1 + '&' : ''}
+                            + ${keyworddireccion2!=null && keyworddireccion2!=''? 'keyworddireccion2=' + keyworddireccion2 + '&' : ''}
+                + 'page=' + ${currentPage} + '&size=' + ${pageSize}
+                + ${sortField!=null ? '&sort=' + field + ','
+                + (sortField == field ? reverseSortDirection : sortDirection) : ''}}">
+    [[${label}]] </a>
+  <span th:if="${sortField == field}"
+    th:class="${sortDirection == 'asc' ? 'fas fa-arrow-down-short-wide' : 'fas fa-arrow-down-wide-short'}"></span>
+</th>

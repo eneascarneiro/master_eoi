@@ -1,15 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{/layout/layout_1}">
+      layout:decorate="~{/layout/layoutlogin}">
 <head>
     <meta charset="UTF-8">
     <title>Registro de usuarios</title>
 </head>
 <body>
-    <header th:insert="fragments/prueba.html :: header(titulo)"> </header>
+    <div layout:fragment="cabecera">
+        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Pantalla de sandra</p>
+    </div>
     <div layout:fragment="contenido">
-        Contenido de la pantalla de alba
+        Contenido de la pantalla de sandra
     </div>
 </body>
 </html>

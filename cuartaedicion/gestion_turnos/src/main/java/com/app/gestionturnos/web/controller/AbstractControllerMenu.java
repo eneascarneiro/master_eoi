@@ -29,6 +29,7 @@ public abstract class AbstractControllerMenu {
         else {
             userName = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         }
+        System.out.println("Menu 3 Usuario:" +userName  );
         return this.menuService.getMenuForEmail(userName);
     }
 

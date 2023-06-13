@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sd="http://www.w3.org/1999/xhtml"
+  xmlns:sec="http://www.w3.org/1999/xhtml"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+  layout:decorate="~{layout/layout}"
+>
+  <body>
+    <div layout:fragment="cabecera">
+      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Listado de empresas con paginación</p>
+    </div>
+    <div layout:fragment="contenido">
+      <h1>Empresas</h1>
+      <div class="box-body">
+        <span sd:page-size-selector="javascript"></span>
+        <div>
+          <label for="size">Numero de elementos</label>
+          <input id="size" th:type="text" th:name="pageSize">
+        </div>
+        <a th:href="@{/empresas/registro}" class="btn btn-primary btn-sm mb-3">
+          Añadir empresa
+        </a>
+        <form  method="get">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('ciudad','Ciudad')}"></th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('pais','Pais')}"></th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('region','Region')}"></th>
+                <th>codigo_postal</th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('telefono','Telefono')}"></th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('direccion1','Direccion1')}"></th>
+                <th th:replace="~{fragments/sortingempresas :: sorting('direccion1','Direccion2')}"></th>
+                <th></th>
+                <th></th>
+              </tr>º
+              <tr>
+                <th >
+                  <input id="keywordpais" type="search" name="keywordpais" th:value="${keywordpais}"  class="form-control"
+                         placeholder="Enter values">
+                </th>
+                <th >
+                  <input id="keywordciudad" type="search" name="keywordciudad" th:value="${keywordciudad}"  class="form-control"
+                         placeholder="Enter keywordciudad">
+                </th>
+                <th >
+                  <input id="keywordregion" type="search" name="keywordregion" th:value="${keywordregion}"  class="form-control"
+                         placeholder="Enter keywordregion">
+                </th>
+                <th >
+                  <input id="keywordcodigopostal" type="search" name="keywordcodigopostal" th:value="${keywordcodigopostal}"  class="form-control"
+                         placeholder="Enter keywordcodigopostal">
+                </th>
+                <th >
+                  <input id="keywordtelefono" type="search" name="keywordtelefono" th:value="${keywordtelefono}"  class="form-control"
+                         placeholder="Enter keywordtelefono">
+                </th>
+                <th >
+                  <input id="keyworddireccion1" type="search" name="keyworddireccion1" th:value="${keyworddireccion1}"  class="form-control"
+                         placeholder="Enter keyworddireccion1">
+                </th>
+                <th >
+                  <input id="keyworddireccion2" type="search" name="keyworddireccion2" th:value="${keyworddireccion2}"  class="form-control"
+                         placeholder="Enter keyworddireccion2">
+                </th>
+                <th>
+
+
+                </th>
+                <th><button type="submit"   class="btn btn-secondary">Search</button></th>
+                <th> <button id="btnClearGrid" class="btn btn-info">Clear</button></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="empresa : ${lista}">
+                <td class="fs-6" th:text="${empresa.id}"></td>
+                <td class="fs-6" th:text="${empresa.ciudad}"></td>
+                <td class="fs-6" th:text="${empresa.pais}"></td>
+                <td class="fs-6" th:text="${empresa.region}"></td>
+                <td class="fs-6" th:text="${empresa.codigopostal}"></td>
+                <td class="fs-6" th:text="${empresa.telefono}"></td>
+                <td class="fs-6" th:text="${empresa.lineadireccion1}"></td>
+                <td class="fs-6" th:text="${empresa.lineadireccion2}"></td>
+                <td>
+                  <a
+                    th:href="@{/empresas/details/{id}(id=${empresa.id})}"
+                    class="btn btn-success btn-sm"
+                    >Visualizar</a
+                  >
+                  <a
+                    th:href="@{/employees/borrar/{id}(id=${empresa.id})}"
+                    class="btn btn-primary btn-sm"
+                    >Eliminar</a
+                  >
+                </td>
+                <tr th:if="${lista ==null or  lista.empty}">
+                  <td colspan="13" class="text-center">No hay empresas</td>
+                </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <!-- preparamos el div para poner los numeros de pagina-->
+      <div  th:if="${lista!=null and !lista.empty}" >
+        <div class="text-center">
+          <nav>
+            <ul class="pagination" sd:pagination="full">
+              <!--  si hay menos del numero minimo de registos no muestro la barra-->
+              <div  th:if="${lista.totalPages > 0}" class="pagination"
+                    th:each="pageNumber : ${pageNumbers}">
+                <li th:class="${pageNumber==lista.number + 1} ? active">
+                  <a href="#" th:href="@{/empresas/listaempresaspordbusq(size=${lista.size}, page=${pageNumber})}"
+                     th:text=${pageNumber}></a>
+                </li>
+              </div>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
