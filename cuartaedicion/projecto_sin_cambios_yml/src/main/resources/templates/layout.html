@@ -46,7 +46,7 @@
 <!-- Topbar Start -->
 <div class="container-fluid bg-dark px-5">
     <div class="row gx-4 d-none d-lg-flex">
-        <div class="col-lg-6 text-start">
+        <div class="col-lg-4 text-start">
             <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                 <div class="btn-sm-square rounded-circle bg-primary me-2">
                     <small class="fa fa-map-marker-alt text-white"></small>
@@ -60,7 +60,16 @@
                 <small th:text="#{FooterStart.email}"></small>
             </div>
         </div>
-        <div class="col-lg-6 text-end">
+        <div class="col-lg-4 text-end">
+            <span th:text="#{lang.change}"></span>:
+            <select id="locales">
+                <option value=""></option>
+                <option value="es" th:text="#{lang.es}"></option>
+                <option value="en" th:text="#{lang.eng}"></option>
+                <option value="fr" th:text="#{lang.fr}"></option>
+            </select>
+        </div>
+        <div class="col-lg-4 text-end">
             <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                 <div class="btn-sm-square rounded-circle bg-primary me-2">
                     <small class="fa fa-phone-alt text-white"></small>
@@ -711,7 +720,19 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            var ref = window.location.pathname;
+            if (selectedOption != ''){
+                window.location.replace(ref + '?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
