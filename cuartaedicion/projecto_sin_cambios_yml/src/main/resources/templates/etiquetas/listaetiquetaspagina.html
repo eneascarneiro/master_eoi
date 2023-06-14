@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de usuarios</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Estas en la lista de usuarios</h1>
+</div>
+<div layout:fragment="contenido">
+    <div class="box-body">
+        Show <span sd:page-size-selector="javascript"></span> entries
+        <form action="#" th:action="@{/}" method="post">
+            <div class="table-responsive">
+            <!-- Opcion 1 : tabla con contenido ( recomandable en caso de listas-->
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
+                    </tr>
+                    <tr th:each="elemento , posicion : ${listaDtos}">
+                        <td th:text="${elemento.name}"></td>
+                        <td>
+                            <!-- meter un link para ver  con texto "ver"-->
+                            <a th:href="@{'/etiquetas/'+ ${elemento.id}}">Detalles</a>
+                        </td>
+                        <td>
+                            <!-- meter un boton para borrar  con un boton-->
+                            <button type="submit" value="Eliminar" th:formaction="'/etiquetas/'+ ${elemento.id} +'/delete'">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!--Mostramos una ultima fila con inormación cuando no hay registros -->
+                    <tr th:if="${listaDtos ==null or  listaDtos.empty}">
+                        <td colspan="13" class="text-center">No hay etiquetas</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <!-- preparamos el div para poner los numeros de pagina-->
+    <div  th:if="${listaDtos!=null and !listaDtos.empty}" >
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <!--  si hay menos del numero minimo de registos no muestro la barra-->
+                    <div  th:if="${listaDtos.totalPages > 0}" class="pagination"
+                       th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==listaDtos.number + 1} ? active">
+                            <a href="#" th:href="@{/usuarios(size=${listaDtos.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
