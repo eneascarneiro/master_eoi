@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de  usuarios</title>
+</head>
+<body>
+    <div layout:fragment="cabecera">
+        <h1>Editar etiqueta</h1>
+    </div>
+    <div layout:fragment="contenido">
+        <div>
+            <h2>Editar  etiquetas</h2>
+            <div>
+                <form role="form" th:object="${datos}" method="post">
+                    <input th:type="hidden" th:field="${datos.id}">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" maxlength="30" th:field="${datos.name}" >
+
+                    <div>
+                        <button type="submit" title="Guardar">Guardar usuario </button>
+                        <a th:href="@{/}" role="button" title="Volver a principal" th:text="Cancelar">
+
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

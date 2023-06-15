@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi primera página de login</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Error de ejecución</h1>
+</div>
+<div layout:fragment="contenido">
+    <h2>Estamos trabajando en ello</h2>
+    <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+    <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    <a th:href="@{/}" class="nav-item nav-link active">Home</a>
+</div>
+</body>
+</html>

@@ -2,10 +2,7 @@ package com.example.jpa_formacion.web.controller;
 
 import com.example.jpa_formacion.dto.*;
 import com.example.jpa_formacion.model.Usuario;
-import com.example.jpa_formacion.service.IUsuarioServicio;
-import com.example.jpa_formacion.service.MenuService;
-import com.example.jpa_formacion.service.RoleService;
-import com.example.jpa_formacion.service.UsuarioService;
+import com.example.jpa_formacion.service.*;
 import com.example.jpa_formacion.util.ValidarFormatoPassword;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,12 +28,15 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.example.jpa_formacion.util.ValidarFormatoPassword.ValidarFormato;
 
 @Controller
 public class AppUsuariosController extends AbstractController <UsuarioDto> {
 
+    @Autowired
+    private ICaptchaServicio iCaptchaServicio;
     private final  UsuarioService service;
     private final RoleService roleService;
     @Autowired
@@ -223,13 +223,14 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         return "usuarios/login";
     }
     // Reset password
-    @GetMapping("/usuarios/resetpass/{usrname}/{token}")
-    public String cambiopass(@PathVariable("usrname") String username, @PathVariable("token") String token, ModelMap intefrazConPantalla) {
-        Optional<Usuario> usuario = service.getRepo().findByEmailAndTokenAndActiveTrue(username,token );
-        System.out.println(username + ":" + token );
+    @GetMapping("/usuarios/resetpass/{token}")
+    public String cambiopass(@PathVariable("token") String token, ModelMap intefrazConPantalla) {
+        Optional<Usuario> usuario = service.getRepo().findByTokenAndActiveTrue(token );
+
         UsuarioCambioPsw usuarioCambioPsw = new UsuarioCambioPsw();
 
         if (usuario.isPresent()){
+            System.out.println("Cambio de password para:"+usuario.get().getNombreUsuario() + ":" + token );
             usuarioCambioPsw.setUsuario(usuario.get().getEmail());
             usuarioCambioPsw.setPassword("******************");
             usuarioCambioPsw.setNewpassword("******************");
@@ -241,13 +242,20 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         }
     }
     @PostMapping("/usuarios/resetpass")
-    public String saveListaUsuariuos(@ModelAttribute  UsuarioCambioPsw  dto) throws Exception {
+    public String saveListaUsuariuos(@ModelAttribute  UsuarioCambioPsw  dto, HttpServletRequest request) throws Exception {
+        //Comprobamos el captcha
+        String response = request.getParameter("g-recaptcha-response");
+        iCaptchaServicio.processResponse(response);
+
         //Si las password no coinciden a la pag de error
         if (dto.getPassword().equals(dto.getNewpassword())){
             //Buscamnos el usuario
             Usuario usuario = service.getRepo().findByEmailAndActiveTrue(dto.getUsuario());
             //Actualizo la password despues de codificarla
             usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
+            //Modifico el token de nuevo
+            String newtoken = this.cadenaAleatoria(35);
+            usuario.setToken(newtoken);
             //Guardo el usuario
             Usuario usuarioguarado = service.guardarEntidadEntidad(usuario);
             return "redirect:/usuarios/login";
@@ -257,5 +265,39 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         }
 
     }
+    //Generar la url para cambio de password
+    @GetMapping("/usuarios/resetpass/url/{id}")
+    public String cambiopass(@PathVariable("id") Integer id) throws Exception {
+        Optional<Usuario> usuario = service.getRepo().findById(id);
+        Usuario usuarioNuevoToken = new Usuario();
+        //Cambiamos el token
+        String newtoken = this.cadenaAleatoria(50);
+        if (usuario.isPresent()){
+            usuarioNuevoToken = usuario.get();
+            usuarioNuevoToken.setToken(newtoken);
+            service.guardarEntidadEntidad(usuarioNuevoToken);
+            System.out.println("URL para notificacion: localhost:8093/usuarios/resetpass/"+ newtoken );
+            return "usuarios/login";
+        }else {
+            //Mostrar página usuario no existe
+            return "usuarios/detallesusuarionoencontrado";
+        }
+    }
 
+    public  String cadenaAleatoria(int longitud) {
+        // El banco de caracteres
+        String banco = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        // La cadena en donde iremos agregando un carácter aleatorio
+        String cadena = "";
+        for (int x = 0; x < longitud; x++) {
+            int indiceAleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+            char caracterAleatorio = banco.charAt(indiceAleatorio);
+            cadena += caracterAleatorio;
+        }
+        return cadena;
+    }
+    public static int numeroAleatorioEnRango(int minimo, int maximo) {
+        // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+    }
 }
