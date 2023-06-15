@@ -12,7 +12,7 @@ import java.util.*;
 public abstract class AbstractBusinessService <E, ID, DTO,  REPO extends JpaRepository<E,ID> ,
         MAPPER extends AbstractServiceMapper<E,DTO>>  {
     private final REPO repo;
-    private final MAPPER serviceMapper;
+    final MAPPER serviceMapper;
 
 
     protected AbstractBusinessService(REPO repo, MAPPER mapper) {
