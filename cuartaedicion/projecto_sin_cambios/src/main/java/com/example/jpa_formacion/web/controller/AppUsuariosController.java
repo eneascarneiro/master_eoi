@@ -198,8 +198,10 @@ public class AppUsuariosController extends AbstractController <UsuarioDto> {
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);
+        Usuario usuario = service.getRepo().findByEmailAndActiveTrue(usr);
+        boolean matches = passwordEncoder.matches(password, usuario.getPassword());
         //¿es correcta la password?
-        if (service.getRepo().repValidarPassword(usr, passwordEncoder.encode(password) ) > 0)
+        if (matches)
         {
             return "index";
         }else {
