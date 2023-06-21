@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de usuarios</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>¿Que quieres comprar?</h1>
+</div>
+<div layout:fragment="contenido">
+    <hr class="my-4 mt-2 mb-2"/>
+    <div class="row mt-3 mb-3 justify-content-around" th:object="${listacatalogo}">
+        <th:block th:each="elemento : ${listacatalogo}">
+            <div class="col-md-4 mb-3">
+                <!-- pos cad elemento  quiero mostrar un bojeto de clase class="card" -->
+                <div class="card">
+                    <h4 class="card-title" th:text="${elemento.titulo}" ></h4>
+                    <img th:src="${elemento.urlImg}"  class="card-img-top" >
+                    Empleado: <p th:text="${elemento.empleadoNombre}"></p>
+                    <th:block th:each="etiqueta : ${elemento.etiquetas}" >
+                        <span class="badge bg-primary" th:text="${etiqueta.name}"></span>
+                    </th:block>
+                    <a th:href="@{'/galeria/'+ ${elemento.id}}">Ver detalles</a>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+
+</body>
+</html>
+

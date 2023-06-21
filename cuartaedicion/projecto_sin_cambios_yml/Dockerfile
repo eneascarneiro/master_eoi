@@ -1,41 +1,6 @@
-# cat Dockerfile
-FROM maven:3.8.7-openjdk-18-slim
+FROM maven:3.8.5-openjdk-18
 
-MAINTAINER projectosincambios
-
-#RUN chown -R mysql:root /var/lib/mysql/
-
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
-ARG MYSQL_ROOT_PASSWORD
-
-ARG MYSQLDB_LOCAL_PORT
-ARG MYSQLDB_DOCKER_PORT
-
-ARG MYSQL_DATABASE_PROD
-ARG MYSQL_USER_PROD
-ARG MYSQL_PASSWORD_PROD
-ARG MYSQL_ROOT_PASSWORD_PROD
-ARG MYSQL_PORT_PROD
-
-
-ARG SPRING_LOCAL_PORT
-ARG SPRING_DOCKER_PORT
-
-ENV MYSQL_DATABASE=$MYSQL_DATABASE
-ENV MYSQL_USER=$MYSQL_USER
-ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
-
-ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-
-
-#ADD data.sql /etc/mysql/data.sql
-
-#RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/data.sql
-#RUN cp /etc/mysql/data.sql /docker-entrypoint-initdb.d
-
-WORKDIR /projecto_sin_cambios_yml
+WORKDIR /psc-app
 COPY . .
 RUN mvn clean install
 

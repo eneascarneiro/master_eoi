@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout_sec}">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de usuarios</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Estas en la lista de usuarios</h1>
+</div>
+<div layout:fragment="contenido">
+    <form action="#" th:action="@{/usuarios/savemultiple}" th:object="${form}"
+          method="post">
+        <fieldset>
+            <input type="submit" id="submitButton" th:value="Save">
+            <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th> Nombre</th>
+                        <th> Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usuario, itemStat : *{usuarioDtos}">
+                        <td><input  th:type="hidden" th:field="*{usuarioDtos[__${itemStat.index}__].id}" />
+                        <input th:field="*{usuarioDtos[__${itemStat.index}__].nombreUsuario}" /></td>
+                        <td><input th:field="*{usuarioDtos[__${itemStat.index}__].email}" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
+
