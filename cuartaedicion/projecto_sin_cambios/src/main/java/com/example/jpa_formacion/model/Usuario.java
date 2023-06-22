@@ -38,8 +38,10 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuarioincid" )
     private Set<Incidencias> incidencias;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idrole")
+    private Role role;
+
     @Basic(optional = false)
     private boolean active;
 

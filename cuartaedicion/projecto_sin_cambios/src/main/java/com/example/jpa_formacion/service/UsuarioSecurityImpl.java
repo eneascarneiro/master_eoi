@@ -41,9 +41,9 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
         org.springframework.security.core.userdetails.User springUser=null;
 
         Set<GrantedAuthority> ga = new HashSet<>();
-        for (Role item : usuario.getRoles()){
-            ga.add(new SimpleGrantedAuthority(item.getRoleName()));
-        }
+
+        ga.add(new SimpleGrantedAuthority(usuario.getRole().getRoleName()));
+
         springUser = new org.springframework.security.core.userdetails.User(
                 email,
                 usuario.getPassword(),

@@ -24,6 +24,6 @@ public class UsuarioDtoPsw {
 
     private String password;
 
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
 
 }

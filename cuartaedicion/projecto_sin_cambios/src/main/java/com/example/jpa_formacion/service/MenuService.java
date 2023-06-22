@@ -32,16 +32,16 @@ public class MenuService extends AbstractBusinessService<Menu, Integer, MenuDTO,
     public List<MenuDTO> getMenuForUsuarioId(Integer usuarioId) {
         Usuario usuario = this.usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException(String.format("The user ID %s does not exist", usuarioId)));
-        return getMenuForRole(usuario.getRoles());
+        return getMenuForRole(usuario.getRole());
     }
 
-    public List<MenuDTO> getMenuForRole(Collection<Role> roles) {
-        List<Menu> menus = this.getRepo().findDistinctByRolesInAndActiveTrue(roles);
+    public List<MenuDTO> getMenuForRole(Role roles) {
+        List<Menu> menus = this.getRepo().findDistinctByRolesAndActiveTrue(roles);
         return this.getMapper().toDto(menus);
     }
 
     public List<MenuDTO> getMenuForEmail(String email) {
         Usuario usuario = this.usuarioRepository.findByEmailAndActiveTrue(email);
-        return getMenuForRole(usuario.getRoles());
+        return getMenuForRole(usuario.getRole());
     }
 }

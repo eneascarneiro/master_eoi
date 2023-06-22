@@ -12,6 +12,7 @@ services:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
+      - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
   app:
     depends_on:
       - mysqldb
@@ -26,7 +27,7 @@ services:
         "spring.datasource.username" : "$MYSQLDB_USER",
         "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
         "spring.datasource.driver-class-name" : "com.mysql.cj.jdbc.Driver",
-        "spring.jpa.hibernate.ddl-auto" : "create-drop" ,  
+        "spring.jpa.hibernate.ddl-auto" : "update" ,  
         "mailstrap.username" : "api",
         "mailstrap.password" : "dd05f45be13af56332d53dec9b2ab3d2",
         "mailstrap.host" : "live.smtp.mailtrap.io",

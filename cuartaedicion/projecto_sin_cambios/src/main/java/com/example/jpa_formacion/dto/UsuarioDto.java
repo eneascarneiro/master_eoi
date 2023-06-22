@@ -23,5 +23,5 @@ public class UsuarioDto {
 
     private String nombreEmail;
 
-    private Set<Role> roles = new HashSet<>();
+    private Role role;
 }

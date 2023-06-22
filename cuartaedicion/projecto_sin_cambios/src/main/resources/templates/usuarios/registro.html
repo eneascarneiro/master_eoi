@@ -43,16 +43,15 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex flex-row align-items-center mb-4">
-                                                <div class="form-outline flex-fill mb-0">
-                                                    <label class="form-label" for="inputRoles">Roles:</label>
-                                                    <input type="checkbox"  name="roles" id="inputRoles"
-                                                           th:align="center"
-                                                           th:each="role_item : ${listaRoles}"
-                                                           th:text="${role_item.roleName}"
-                                                           th:value="${role_item.id}"
-                                                           th:field="*{roles}"
-                                                    />
-                                                </div>
+                                                <label for="role"  class="form-label mt-2 mb-1">role</label>
+                                                <select th:field="*{role}" class="form-control"  id="role">
+                                                    <option value="" th:disabled="disabled" th:selected="selected">
+                                                        Selecciona un elemento
+                                                    </option>
+                                                    <th:block th:each="rol: ${listaRoles}">
+                                                        <option th:value="${rol.id}" th:text="${rol.roleName}"></option>
+                                                    </th:block>
+                                                </select>
                                             </div>
                                             <div class="form-check d-flex justify-content-center mb-5">
                                                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />

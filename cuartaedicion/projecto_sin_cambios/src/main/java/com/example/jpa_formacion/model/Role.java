@@ -26,7 +26,6 @@ public class Role implements Serializable {
     @Column(nullable = false)
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-        private Set<Usuario>  usuarios;
-
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Usuario> usuario;
 }
